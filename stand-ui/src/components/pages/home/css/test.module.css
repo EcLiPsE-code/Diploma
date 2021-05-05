@@ -1,0 +1,28 @@
+.Test{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    border: 1px solid lightgray;
+}
+
+.Test .Title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1vmin 0;
+    background-color: #496949
+}
+
+.HeadData{
+    display: grid;
+    grid-template-columns: repeat(7, auto);
+    margin: 1vmin 0;
+}
+.HeadData div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+

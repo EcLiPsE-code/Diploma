@@ -1,0 +1,35 @@
+.PersonalAreaWrapper{
+    display: grid;
+    grid-template-rows: 25% 60% 15%;
+    width: 40vw;
+    height: 68vh;
+    margin: 6vmin auto;
+    box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+}
+
+.PersonalAreaWrapper .UserInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2vmin 0;
+}
+
+.PersonalAreaWrapper .EditUserInfo{
+    display: grid;
+    grid-template-rows: repeat(4, 25%);
+}
+
+.PersonalAreaWrapper .EditUserInfo div{
+    display: flex;
+    align-items: center;
+}
+
+.PersonalAreaWrapper .EditUserInfo .EditUserName,
+.PersonalAreaWrapper .EditUserInfo .EditUserSurname,
+.PersonalAreaWrapper .EditUserInfo .EditUserLastName,
+.PersonalAreaWrapper .EditUserInfo .EditUserPhone{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5vmin;
+}

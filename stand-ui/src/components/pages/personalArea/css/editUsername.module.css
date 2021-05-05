@@ -1,0 +1,10 @@
+.EditUserName{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5vmin;
+}
+
+.dataHidden{
+    display: none;
+    margin-left: 2vmin;
+}

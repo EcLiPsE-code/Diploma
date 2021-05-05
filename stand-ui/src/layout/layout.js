@@ -1,0 +1,20 @@
+import React from 'react'
+import NavigationPanel from "../containers/navigationPanel/navigationPanel"
+import InfoPanel from "../containers/infoPanel/infoPanel";
+import classes from './layout.module.css'
+
+const Layout = props => {
+    return (
+        <div className={classes.Layout}>
+            <div>
+                <NavigationPanel/>
+                <InfoPanel/>
+            </div>
+            <div>
+                {props.children}
+            </div>
+        </div>
+    )
+}
+
+export default Layout

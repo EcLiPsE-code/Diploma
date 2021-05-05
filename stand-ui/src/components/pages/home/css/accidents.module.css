@@ -1,0 +1,17 @@
+
+.Accidents{
+    border: 1px solid lightgray;
+    margin-top: 1vmin;
+    max-height: 80%;
+    overflow: auto;
+}
+
+.Accidents .AccidentsTitle{
+    display: flex;
+    align-items: center;
+    background-color: #3f51b5;
+    color: #fff;
+    height: 5vh;
+    font-size: 2vmin;
+    padding: 0 2vmin;
+}

@@ -1,0 +1,19 @@
+.ChartsWrapper{
+    display: flex;
+    flex-direction: column;
+    height: 66vh;
+    width: 70vw;
+    max-height: 66vh;
+    box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+    margin: 6vmin auto;
+    overflow-y: auto;
+}
+
+.Chart{
+    display: flex;
+    height: 30vh;
+    min-height: 30vh;
+    margin: 2vmin auto;
+    width: 90%;
+    box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+}

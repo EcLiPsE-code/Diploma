@@ -1,0 +1,8 @@
+.InfoPanel{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    padding: 1vmin 2vmin;
+    box-sizing: border-box;
+    box-shadow: 0 .3vmin 2vmin .4vmin rgba(0, 0, 0, 0.1);
+}
