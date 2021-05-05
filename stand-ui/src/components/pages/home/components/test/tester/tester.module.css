@@ -1,0 +1,10 @@
+.Tester{
+    display: flex;
+    flex-direction: row;
+    margin-left: 1vmin;
+}
+
+.Tester div{
+    display: flex;
+    align-items: center;
+}

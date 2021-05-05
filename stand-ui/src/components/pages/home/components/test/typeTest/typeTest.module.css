@@ -1,0 +1,42 @@
+.TypeTest{
+    display: flex;
+    flex-direction: row;
+}
+
+.TypeTest div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.TypeTest .BlockTypeTest{
+    min-width: 20vmin;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 2vmin;
+}
+
+.TypeTest .BlockTypeTestActive{
+    background-color: #fafafa;
+    color: #496949;
+}
+
+.TypeTest .BlockTypeTestInActive{
+    background-color: #496949;
+    color: #fff;
+}
+
+.TypeTest .BlockTypeTest:hover{
+    cursor: pointer;
+}
+
+.TypeTest .BlockTypeTest span:first-child{
+    margin-right: 1.5vmin;
+}
+
+.TypeTest .TypeTestLabel{
+    font-size: 2.1vmin;
+    color: #fff;
+    margin: 0 2vmin;
+}

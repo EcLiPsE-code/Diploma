@@ -1,0 +1,66 @@
+.ProtocolWrapper{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: 70vh;
+    width: 95vw;
+    margin: 5vmin auto;
+}
+
+.ProtocolWrapper .Protocols{
+    display: grid;
+    grid-template-rows: 5% 95%;
+    border: 1px solid lightgray;
+}
+
+.ProtocolWrapper .Protocols .Title{
+    display: flex;
+    align-items: center;
+    background-color: #4c4f53;
+    color: #fff;
+    padding-left: 3vmin;
+}
+
+.ProtocolWrapper .ProtocolsData{
+    display: grid;
+    grid-template-rows: 5% 95%;
+    border: 1px solid lightgray;
+    margin-left: 2vmin;
+}
+
+.ProtocolWrapper .ProtocolsData .Title{
+    display: flex;
+    align-items: center;
+    background-color: #4c4f53;
+    color: #fff;
+    padding-left: 3vmin;
+}
+
+.ProtocolWrapper .Protocols .ProtocolTable{
+    display: flex;
+    flex-direction: column;
+}
+
+.ProtocolWrapper .Protocols .ProtocolTable .ProtocolBodyTable{
+    flex-grow: 1;
+    box-sizing: border-box;
+}
+
+.ProtocolWrapper .Protocols .ProtocolTable .StringSearch{
+    display: grid;
+    grid-template-columns: 15% auto auto auto;
+    align-items: center;
+    padding: 1vmin 0;
+    border-bottom: 1px solid lightgray;
+    box-sizing: border-box;
+    background-color: #fafafa;
+}
+
+.ProtocolWrapper .Protocols .ProtocolTable .StringSearch .SearchBtn{
+
+}
+
+.ProtocolWrapper .Protocols .ProtocolTable .StringSearch span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

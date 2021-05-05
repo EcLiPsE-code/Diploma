@@ -1,0 +1,31 @@
+.Data{
+   display: grid;
+    grid-template-columns: 25% 75%;
+    width: 70vw;
+}
+
+.Data .Buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.Data .Buttons div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.Data .Buttons div:last-child{
+    margin-top: 1vmin;
+}
+
+.Info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
