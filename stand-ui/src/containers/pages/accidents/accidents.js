@@ -1,8 +1,7 @@
 import React from 'react'
 import classes from './accidents.module.css'
-import AccidentsTable from "../../../components/UI/table/accidents/accidentTable";
-import Typography from "@material-ui/core/Typography";
-import ProgramTable from "../../../components/UI/table/programm/programTable";
+import AccidentsTable from "../../../components/UI/table/accidents/accidentTable"
+import Typography from "@material-ui/core/Typography"
 
 const Accidents = props => {
     return (

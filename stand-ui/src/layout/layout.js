@@ -6,7 +6,7 @@ import classes from './layout.module.css'
 const Layout = props => {
     return (
         <div className={classes.Layout}>
-            <div>
+            <div className={classes.NabBlock}>
                 <NavigationPanel/>
                 <InfoPanel/>
             </div>

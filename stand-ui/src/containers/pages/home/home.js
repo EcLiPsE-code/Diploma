@@ -18,18 +18,20 @@ const Home = props => {
 
     return (
         <div className={classes.HomeWrapper}>
-            <div>
-                <Test/>
-            </div>
-            <div>
-                <Program
-                    programClick = {handleProgramClick}
-                    templateClick = {handleTemplateClick}
-                    programClose =  {handleProgramClose}
-                    templateClose = {handleTemplateClose}
-                    program = {program}
-                    template = {template}
-                />
+            <div className={classes.HomeInner}>
+                <div>
+                    <Test/>
+                </div>
+                <div>
+                    <Program
+                        programClick = {handleProgramClick}
+                        templateClick = {handleTemplateClick}
+                        programClose =  {handleProgramClose}
+                        templateClose = {handleTemplateClose}
+                        program = {program}
+                        template = {template}
+                    />
+                </div>
             </div>
         </div>
     )

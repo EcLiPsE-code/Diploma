@@ -1,7 +1,6 @@
 .Test{
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
     border: 1px solid lightgray;
 }
 

@@ -3,7 +3,7 @@
     grid-template-columns: 50% 50%;
     height: 70vh;
     width: 95vw;
-    margin: 5vmin auto;
+    margin: auto auto;
 }
 
 .ProtocolWrapper .Protocols{
