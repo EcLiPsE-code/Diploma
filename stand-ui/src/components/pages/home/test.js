@@ -23,10 +23,13 @@ const Test = props => {
                 />
             </div>
             <div className={classes.HeadData}>
-                <DataTest/>
+                <DataTest
+                    text={'Поз.1'}
+                />
             </div>
             <div className={classes.HeadData}>
                 <DataTest
+                    text={'Поз.2'}
                     state={state}
                 />
             </div>

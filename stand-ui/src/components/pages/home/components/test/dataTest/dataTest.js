@@ -4,7 +4,7 @@ import Input from "../../../../../UI/input/input"
 import UserSelect from "../../../../../UI/select/select"
 import Auxiliary from "../../../../../../hoc/auxiliary/auxiliary"
 
-const DataTest = ({state}) => {
+const DataTest = ({state, text}) => {
 
     return (
         <Auxiliary>
@@ -12,11 +12,11 @@ const DataTest = ({state}) => {
                 <Button
                     variant="contained"
                     style={{
-                        backgroundColor: '#739e73',
+                        backgroundColor: state? '#a90329' : '#739e73',
                         color: '#fff',
                     }}
                 >
-                    Поз.1
+                    {text}
                 </Button>
             </div>
             <div>

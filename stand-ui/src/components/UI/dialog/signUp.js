@@ -6,7 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 
-const SignIn = props => {
+const SignUp = props => {
     return (
         <div>
             <Dialog
@@ -14,7 +14,47 @@ const SignIn = props => {
                 onClose={() => props.handleClickClose()}
                 aria-labelledby="form-dialog-title"
             >
-                <DialogTitle id="form-dialog-title">Вход</DialogTitle>
+                <DialogTitle id="form-dialog-title">Зарегестрироваться</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Фамилия"
+                        type="text"
+                        fullWidth
+                    />
+                </DialogContent>
+                <DialogContent>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Имя"
+                        type="text"
+                        fullWidth
+                    />
+                </DialogContent>
+                <DialogContent>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Отчество"
+                        type="text"
+                        fullWidth
+                    />
+                </DialogContent>
+                <DialogContent>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Телефон"
+                        type="text"
+                        fullWidth
+                    />
+                </DialogContent>
                 <DialogContent>
                     <TextField
                         autoFocus
@@ -40,7 +80,7 @@ const SignIn = props => {
                         Отмена
                     </Button>
                     <Button onClick={() => props.handleClickClose()} color="primary">
-                        Войти
+                        Зарегестрироваться
                     </Button>
                 </DialogActions>
             </Dialog>
@@ -48,4 +88,4 @@ const SignIn = props => {
     );
 }
 
-export default SignIn
+export default SignUp
