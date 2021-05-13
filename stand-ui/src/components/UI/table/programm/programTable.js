@@ -60,7 +60,7 @@ const ProgramTable = props => {
             flexDirection: 'column',
             justifyContent: 'space-between',
             width: '100%',
-            height: '100%'
+            height: '40vh'
         }}>
             <div>
                 <TableContainer>

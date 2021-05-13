@@ -4,7 +4,7 @@ import Auxiliary from "../../../hoc/auxiliary/auxiliary";
 
 const Input = props =>{
 
-    const {label, defaultValue, type, variant, onChange} = props
+    const {label, defaultValue, type, variant, onChange, disabledType} = props
 
     return (
         <Auxiliary>
@@ -14,6 +14,7 @@ const Input = props =>{
                 size="small"
                 variant={variant? variant : 'filled'}
                 type={type}
+                disabled={disabledType}
                 onChange={onChange? event => onChange(event) : null}
             />
         </Auxiliary>

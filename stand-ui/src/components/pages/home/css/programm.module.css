@@ -2,7 +2,6 @@
     display: grid;
     grid-template-rows: 20% 80%;
     border: 1px solid lightgray;
-    height: 50vh;
 }
 .Programs div{
     display: flex;

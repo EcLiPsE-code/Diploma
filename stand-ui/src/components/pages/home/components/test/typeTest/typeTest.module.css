@@ -1,6 +1,7 @@
 .TypeTest{
     display: flex;
     flex-direction: row;
+    height: 100%;
 }
 
 .TypeTest div{
@@ -17,6 +18,12 @@
     font-size: 2vmin;
 }
 
+.TypeTest .BlockTypeTest div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .TypeTest .BlockTypeTestActive{
     background-color: #fafafa;
     color: #496949;
@@ -31,7 +38,7 @@
     cursor: pointer;
 }
 
-.TypeTest .BlockTypeTest span:first-child{
+.TypeTest .BlockTypeTest div:first-child{
     margin-right: 1.5vmin;
 }
 

@@ -4,7 +4,7 @@ import Input from "../../../../../UI/input/input"
 import UserSelect from "../../../../../UI/select/select"
 import Auxiliary from "../../../../../../hoc/auxiliary/auxiliary"
 
-const DataTest = props => {
+const DataTest = ({state}) => {
 
     return (
         <Auxiliary>
@@ -24,6 +24,7 @@ const DataTest = props => {
                     variant={'outlined'}
                     label={'Протокол'}
                     defaultValue={'Протокол'}
+                    disabledType={state}
                 />
             </div>
             <div>
@@ -31,6 +32,7 @@ const DataTest = props => {
                     variant={'outlined'}
                     label={'Модель'}
                     defaultValue={'Модель'}
+                    disabledType={state}
                 />
             </div>
             <div>
@@ -38,6 +40,7 @@ const DataTest = props => {
                     variant={'outlined'}
                     label={'Размер'}
                     defaultValue={'0'}
+                    disabledType={state}
                 />
             </div>
             <div>
@@ -45,6 +48,7 @@ const DataTest = props => {
                     variant={'outlined'}
                     label={'Заводской номер'}
                     defaultValue={'Заводской номер'}
+                    disabledType={state}
                 />
             </div>
             <div>
@@ -52,10 +56,14 @@ const DataTest = props => {
                     variant={'outlined'}
                     label={'Rdin min'}
                     defaultValue={'255'}
+                    disabledType={state}
                 />
             </div>
             <div>
-                <UserSelect style={{width: '10vw'}}/>
+                <UserSelect
+                    style={{width: '10vw'}}
+                    disabledType={state}
+                />
             </div>
         </Auxiliary>
     )

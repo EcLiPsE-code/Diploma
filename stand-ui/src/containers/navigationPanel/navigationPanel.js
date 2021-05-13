@@ -1,24 +1,30 @@
 import React, {useState} from 'react'
-import Auxiliary from "../../hoc/auxiliary/auxiliary";
-import Header from "../../components/header/header";
-import Sidebar from "../../components/sideBar/sideBar";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
+import Auxiliary from '../../hoc/auxiliary/auxiliary'
+import Header from '../../components/header/header'
+import Sidebar from '../../components/sideBar/sideBar'
+import MenuItem from '@material-ui/core/MenuItem'
+import Menu from '@material-ui/core/Menu'
+import FormDialog from '../../components/UI/dialog/signIIn'
 
 const NavigationPanel = props => {
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [signInDialog, setSignInDialog] = useState(false)
     const [state, setState] = useState({
         left: false
     })
 
     const open = Boolean(anchorEl);
 
+    const signInDialogOpen = () => setSignInDialog(true)
+    const signInDialogClose = () => setSignInDialog(false)
+
     const handleMenu = event => {
         setAnchorEl(event.currentTarget);
     };
 
     const handleClose = () => {
+        signInDialogOpen()
         setAnchorEl(null);
     };
 
@@ -37,6 +43,11 @@ const NavigationPanel = props => {
 
     return (
         <Auxiliary>
+            <FormDialog
+                open={signInDialog}
+                handleClickOpen={signInDialogOpen}
+                handleClickClose={signInDialogClose}
+            />
             <Header
                 anchorElParam = {anchorEl}
                 handleMenu = {handleMenu}

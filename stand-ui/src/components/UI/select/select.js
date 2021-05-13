@@ -10,6 +10,7 @@ const UserSelect = props => {
             <Select
                 className={classes.Select}
                 style={props.style}
+                disabled={props.disabledType}
             >
             </Select>
         </Auxiliary>
