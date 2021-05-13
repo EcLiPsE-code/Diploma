@@ -1,0 +1,1 @@
+export const LOAD_SYSTEM = 'LOAD_SYSTEM'

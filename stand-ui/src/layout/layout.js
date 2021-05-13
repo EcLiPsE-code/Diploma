@@ -10,7 +10,7 @@ const Layout = props => {
                 <NavigationPanel/>
                 <InfoPanel/>
             </div>
-            <div>
+            <div className={classes.BodyBlock}>
                 {props.children}
             </div>
         </div>

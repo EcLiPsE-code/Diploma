@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import classes from './home.module.css'
-import Test from "../../../components/pages/home/test";
-import Program from "../../../components/pages/home/programm";
+import Test from "../../../components/pages/home/test"
+import Program from "../../../components/pages/home/programm"
 
 const Home = props => {
 
@@ -18,20 +18,18 @@ const Home = props => {
 
     return (
         <div className={classes.HomeWrapper}>
-            <div className={classes.HomeInner}>
-                <div>
-                    <Test/>
-                </div>
-                <div>
-                    <Program
-                        programClick = {handleProgramClick}
-                        templateClick = {handleTemplateClick}
-                        programClose =  {handleProgramClose}
-                        templateClose = {handleTemplateClose}
-                        program = {program}
-                        template = {template}
-                    />
-                </div>
+            <div>
+                <Test/>
+            </div>
+            <div style={{marginTop: '2vmin'}}>
+                <Program
+                    programClick = {handleProgramClick}
+                    templateClick = {handleTemplateClick}
+                    programClose =  {handleProgramClose}
+                    templateClose = {handleTemplateClose}
+                    program = {program}
+                    template = {template}
+                />
             </div>
         </div>
     )

@@ -20,6 +20,16 @@
     align-items: center;
 }
 
+.ServerText,
+.ModeText,
+.ConditionText{
+    padding: .8vmin;
+    border-radius: .4vmin;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+}
+
 .Server,
 .Condition{
     margin-top: 1vmin;

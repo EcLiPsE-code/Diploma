@@ -58,7 +58,7 @@ const Sidebar = props => {
                 {
                     menu.map((menuItem, index) => {
                         return (
-                            <NavLink style={{
+                            <NavLink key={index} style={{
                                 width: '100%',
                                 display: 'flex',
                                 position: 'relative',
