@@ -29,11 +29,15 @@ const Protocols = props => {
                         <div className={classes.StringSearch}>
                             <span>
                                 <Button
-                                    size='large'
+                                    size='small'
                                     variant="contained"
-                                    color="default"
+                                    style={{
+                                        backgroundColor: '#356e35',
+                                        color: '#fff',
+                                        padding: '1vmin 2vmin'
+                                    }}
                                   >
-                                    Search
+                                    Поиск
                                 </Button>
                             </span>
                             <span>

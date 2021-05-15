@@ -1,79 +1,23 @@
-import React, {useState} from 'react'
+import React, {useMemo, useState} from 'react'
 import classes from './personalArea.module.css'
-import {Avatar} from "@material-ui/core"
+import {Avatar, Button} from "@material-ui/core"
 import EditData from "../../../components/pages/personalArea/components/editData"
+import {connect} from 'react-redux'
+import AccountData from "../../../components/UI/dialog/changeAccountData";
 
 const PersonalArea = props => {
 
-    const [name, setName] = useState({
-        booleanLabel: false,
-        dataLabel: 'Евгений'
-    })
-    const [surname, setSurname] = useState({
-        booleanLabel: false,
-        dataLabel: 'Трофимов'
-    })
-    const [lastName, setLastName] = useState({
-        booleanLabel: false,
-        dataLabel: 'Владимирович'
-    })
-    const [phone, setPhone] = useState({
-        booleanLabel: false,
-        dataLabel: '+375336825667'
-    })
+    const [account, setAccount] = useState(false)
 
-    const handlerClickName = event => {
-        setName({
-            ...name,
-            booleanLabel: !name.booleanLabel
-        })
-    }
+    const accountOpen = () => setAccount(true)
+    const accountClose = () => setAccount(false)
 
-    const handlerOnchangeName = event => {
-        setName({
-            ...name,
-            dataLabel: event.currentTarget.value
-        })
-    }
-
-    const handlerClickSurname = () => {
-        setSurname({
-            ...surname,
-            booleanLabel: !surname.booleanLabel
-        })
-    }
-    const handlerOnchangeSurname = event => {
-        setSurname({
-            ...surname,
-            dataLabel: event.currentTarget.value
-        })
-    }
-    const handlerClickLastName = () => {
-        setLastName({
-            ...lastName,
-            booleanLabel: !lastName.booleanLabel
-        })
-    }
-    const handlerOnchangeLastName = event => {
-        setLastName({
-            ...lastName,
-            dataLabel: event.currentTarget.value
-        })
-    }
-    const handlerClickPhone = () => {
-        setPhone({
-            ...phone,
-            booleanLabel: !phone.booleanLabel
-        })
-    }
-    const handlerOnchangePhone = event => {
-        setPhone({
-            ...phone,
-            dataLabel: event.currentTarget.value
-        })
-    }
     return (
         <div>
+            <AccountData
+                open={account}
+                handleClickClose={accountClose}
+            />
             <div className={classes.PersonalAreaWrapper}>
                 <div className={classes.UserInfo}>
                     <span>
@@ -83,49 +27,75 @@ const PersonalArea = props => {
                             fontSize: '3vmin',
                             backgroundColor: 'purple'
                         }}>
-                        ЕВ
-                    </Avatar>
+                            {`${props.name.charAt(0)}${props.surname.charAt(0)}`}
+                        </Avatar>
                     </span>
                     <span>
-                        <h2>Трофимов Евгений Владимирович</h2>
+                        <h2>
+                            {`${props.name} ${props.surname} ${props.lastName}`}
+                        </h2>
                     </span>
                 </div>
                 <div className={classes.EditUserInfo}>
                     <EditData
-                        state={name}
+                        state={props.name}
                         labelEdit={'Имя'}
                         label={'Имя'}
-                        onClick = {handlerClickName}
-                        onChange={handlerOnchangeName}
                     />
                     <EditData
-                        state={surname}
+                        state={props.surname}
                         labelEdit={'Фамилия'}
                         label={'Фамилия'}
-                        onClick={handlerClickSurname}
-                        onChange={handlerOnchangeSurname}
                     />
                     <EditData
-                        state={lastName}
+                        state={props.lastName}
                         labelEdit={'Отчество'}
                         label={'Отчество'}
-                        onClick={handlerClickLastName}
-                        onChange={handlerOnchangeLastName}
                     />
                     <EditData
-                        state={phone}
+                        state={props.phone}
                         labelEdit={'Телефон'}
                         label={'Мобильный телефон'}
-                        onClick={handlerClickPhone}
-                        onChange={handlerOnchangePhone}
                     />
                 </div>
-                <div>
-
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}
+                >
+                    <Button
+                        variant={'contained'}
+                        style={{
+                            backgroundColor: '#356e35',
+                            color: '#fff'
+                        }}
+                        onClick={() => accountOpen()}
+                    >
+                        Изменить данные об аккаунте
+                    </Button>
                 </div>
             </div>
         </div>
     )
 }
 
-export default PersonalArea
+function mapStateToProps(state){
+    return {
+        name: state.personalAreaReducer.name,
+        surname: state.personalAreaReducer.surname,
+        lastName: state.personalAreaReducer.lastName,
+        phone: state.personalAreaReducer.phone,
+        email: state.personalAreaReducer.email,
+        password: state.personalAreaReducer.password
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PersonalArea)
