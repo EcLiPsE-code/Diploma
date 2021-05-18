@@ -3,8 +3,9 @@ import Chart from "react-apexcharts"
 import ApexChart from 'apexcharts'
 import randomInteger from "../../../../helerps/randomizer/randomizer"
 import formatterDate from "../../../../helerps/dateFormatter/formatter"
+import moment from 'moment'
 
-const UserChart = ({id, text}) => {
+const UserChart = ({id, text, textY}) => {
 
     const [arrX, setArrX] = useState([])
 
@@ -27,6 +28,14 @@ const UserChart = ({id, text}) => {
                     }
                 },
             },
+            legend: {
+                position: "right",
+                verticalAlign: "top",
+                containerMargin: {
+                    left: 35,
+                    right: 60
+                }
+            },
             dataLabels: {
                 enabled: false
             },
@@ -34,12 +43,27 @@ const UserChart = ({id, text}) => {
                 curve: 'smooth'
             },
             title: {
-                text: text,
-                align: 'left'
-            }
+                text: text
+            },
+            yaxis: [
+                {
+                    title: {
+                        text: textY
+                    }
+                }
+            ],
+            xaxis: {
+                title: {
+                    text: 'Интервал времени',
+                    style: {
+                        fontSize: '2vmin'
+                    }
+                }
+            },
         },
         series: [
             {
+                name: text,
                 data: arrX
             }
         ]
@@ -50,7 +74,10 @@ const UserChart = ({id, text}) => {
             if (arrX.length === 8){
                 arrX.splice(0, 1)
             }
-            let newArrX = arrX.push({x: formatterDate(new Date(Date.now())), y: randomInteger(1, 100)})
+            let newArrX = arrX.push({
+                x: formatterDate(new Date(Date.now())),
+                y: randomInteger(1, 100)
+            })
             setArrX(newArrX)
 
             ApexChart.exec(id, 'updateSeries', [{

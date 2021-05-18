@@ -7,7 +7,7 @@ const UserCalendar = props => {
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker
                 clearable
-                value={null}
+                value={props.value}
                 placeholder="Выберите дату"
                 onChange={date => props.onChange(date)}
                 minDate={props.minDate}

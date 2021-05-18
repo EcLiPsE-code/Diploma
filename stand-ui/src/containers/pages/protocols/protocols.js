@@ -53,12 +53,14 @@ const Protocols = props => {
                                 <UserCalendar
                                     onChange={handleBeginDateChange}
                                     minDate={new Date()}
+                                    value={selectedBeginDate}
                                 />
                             </span>
                             <span>
                                 <UserCalendar
                                     onChange={handleEndDateChange}
                                     minDate={new Date(+(new Date()) + 3600 * 24 * 1000)}
+                                    value={selectedEndDate}
                                 />
                             </span>
                         </div>
