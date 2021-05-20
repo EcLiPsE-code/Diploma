@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -19,6 +20,8 @@ public class Programm {
     private String name;
     @Column(name = "Date", nullable = false)
     private LocalDate date;
+
+    private List<Accident> accidents;
 
     public String getId(){return id;}
     public void setId(String id){this.id = id;}
