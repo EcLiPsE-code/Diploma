@@ -3,6 +3,11 @@ import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers"
 import DateFnsUtils from "@date-io/date-fns";
 
 const UserCalendar = props => {
+
+    const style = {
+        width: '80%'
+    }
+
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker
@@ -12,9 +17,7 @@ const UserCalendar = props => {
                 onChange={date => props.onChange(date)}
                 minDate={props.minDate}
                 format="MM/dd/yyyy"
-                style={{
-                    width: '80%'
-                }}
+                style={props.style? props.style : style}
             />
         </MuiPickersUtilsProvider>
     )

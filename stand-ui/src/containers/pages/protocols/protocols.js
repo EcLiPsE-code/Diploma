@@ -1,29 +1,36 @@
-import React from 'react'
+import React, {useState} from 'react'
 import 'date-fns'
 import classes from './protocols.module.css'
 import Input from "../../../components/UI/input/input"
-import {Button} from "@material-ui/core"
-import ProtocolsTable from "../../../components/UI/table/protocols/protocolsTable"
-import UserCalendar from "../../../components/UI/calendar/calender"
+import {Button, Menu, MenuItem} from '@material-ui/core'
+import ProtocolsTable from '../../../components/UI/table/protocols/protocolsTable'
+import UserCalendar from '../../../components/UI/calendar/calender'
+import SettingsIcon from '@material-ui/icons/Settings'
+import Auxiliary from '../../../hoc/auxiliary/auxiliary'
 
 const Protocols = props => {
 
-    const [selectedBeginDate, setSelectedBeginDate] = React.useState(null);
-    const [selectedEndDate, setSelectedEndDate] = React.useState(null)
+    const [selectedBeginDate, setSelectedBeginDate] = useState(null);
+    const [selectedEndDate, setSelectedEndDate] = useState(null)
+    const [settings, setSettings] = useState(null)
 
-    const handleBeginDateChange = date => {
-        setSelectedBeginDate(date)
-    }
+    const settingsOpenHandler = event => setSettings(event.currentTarget)
+    const settingsCloseHandler = () => setSettings(null)
 
-    const handleEndDateChange = date => {
-        setSelectedEndDate(date)
-    }
+    const handleBeginDateChange = date => setSelectedBeginDate(date)
+    const handleEndDateChange = date => setSelectedEndDate(date)
 
     return (
+        <Auxiliary>
             <div className={classes.ProtocolWrapper}>
                 <div className={classes.Protocols}>
                     <div className={classes.Title}>
-                        <strong>Протоколы</strong>
+                        <div>
+                            <strong>Протоколы</strong>
+                        </div>
+                        <div>
+                            <SettingsIcon />
+                        </div>
                     </div>
                     <div className={classes.ProtocolTable}>
                         <div className={classes.StringSearch}>
@@ -36,14 +43,14 @@ const Protocols = props => {
                                         color: '#fff',
                                         padding: '1vmin 2vmin'
                                     }}
-                                  >
+                                >
                                     Поиск
                                 </Button>
                             </span>
                             <span>
                                 <Input
-                                    label={'Протокол'}
-                                    defaultValue={'Протокол'}
+                                    label={'Программа'}
+                                    defaultValue={'Программа'}
                                     variant={'outlined'}
                                 />
                             </span>
@@ -78,6 +85,7 @@ const Protocols = props => {
                     </div>
                 </div>
             </div>
+        </Auxiliary>
     )
 }
 

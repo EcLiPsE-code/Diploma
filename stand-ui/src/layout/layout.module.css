@@ -4,6 +4,8 @@
 }
 
 .NabBlock{
+    min-height: 25vh;
+    min-width: 100vw;
     display: flex;
     flex-direction: column;
 }

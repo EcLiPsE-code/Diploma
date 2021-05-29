@@ -16,7 +16,6 @@ const Test = props => {
     return (
         <div className={classes.Test}>
             <div className={classes.Title}>
-                <Tester/>
                 <TypeTest
                     state={state}
                     onClick={onClickHandler}

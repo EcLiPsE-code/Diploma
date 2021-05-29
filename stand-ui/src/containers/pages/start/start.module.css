@@ -1,0 +1,30 @@
+.StartPageWrapper {
+    display: flex;
+    height: 70vh;
+    width: 90vw;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background-image: url('https://avatars.mds.yandex.net/get-zen_doc/1360848/pub_5e1c0d5dd4f07a00af66c405_5e1c14e53642b600afd3bcf1/scale_1200');
+}
+
+.StartPageInner{
+    display: flex;
+    flex-direction: column;
+    margin: 2vmin 5vmin;
+    width: 100%;
+}
+
+.Title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    padding: 2vmin 0;
+    color: #fff;
+    border-bottom: 1px solid black;
+}
+.Body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}

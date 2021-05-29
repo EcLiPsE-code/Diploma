@@ -27,16 +27,14 @@ const Header = props => {
                     (
                         <div>
                             <IconButton
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
                                 onClick={event => props.handleMenu(event)}
                                 color="inherit"
                             >
                                 <AccountCircle />
                             </IconButton>
                         </div>
-                    )}
+                    )
+                }
             </div>
         </div>
     )

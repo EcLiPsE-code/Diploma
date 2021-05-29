@@ -6,41 +6,45 @@
     margin: auto auto;
 }
 
-.ProtocolWrapper .Protocols{
+.Protocols{
     display: grid;
-    grid-template-rows: 5% 95%;
+    grid-template-rows: 7% 93%;
     border: 1px solid lightgray;
 }
 
-.ProtocolWrapper .Protocols .Title{
+.Title{
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     background-color: #4c4f53;
     color: #fff;
     padding-left: 3vmin;
 }
 
-.ProtocolWrapper .ProtocolsData{
+.Title div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Title div:last-child{
+    margin-right: 2vmin;
+}
+
+.ProtocolsData{
     display: grid;
-    grid-template-rows: 5% 95%;
+    grid-template-rows: 7% 93%;
     border: 1px solid lightgray;
     margin-left: 2vmin;
 }
 
-.ProtocolWrapper .ProtocolsData .Title{
-    display: flex;
-    align-items: center;
-    background-color: #4c4f53;
-    color: #fff;
-    padding-left: 3vmin;
-}
-
-.ProtocolWrapper .Protocols .ProtocolTable{
+.ProtocolTable{
     display: flex;
     flex-direction: column;
 }
 
-.ProtocolWrapper .Protocols .ProtocolTable .ProtocolBodyTable{
+.ProtocolBodyTable{
     flex-grow: 1;
     box-sizing: border-box;
 }
