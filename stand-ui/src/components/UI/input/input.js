@@ -2,6 +2,13 @@ import React from 'react'
 import TextField from '@material-ui/core/TextField';
 import Auxiliary from "../../../hoc/auxiliary/auxiliary";
 
+/**
+ * Компонент, который используется для создания
+ * кастомного Input
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Input = props =>{
 
     const {label, defaultValue, type, variant, onChange, disabledType} = props

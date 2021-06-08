@@ -7,6 +7,13 @@ import Menu from '@material-ui/core/Menu'
 import SignIn from "../../components/UI/dialog/signIIn";
 import SignUp from "../../components/UI/dialog/signUp";
 
+/**
+ * Компонент, который формирует шапку страницы, а также
+ * содержит кнопку для авторизации и выхода из системы
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const NavigationPanel = props => {
 
     const [anchorEl, setAnchorEl] = useState(null);

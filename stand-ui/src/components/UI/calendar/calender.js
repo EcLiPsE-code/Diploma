@@ -2,6 +2,13 @@ import React from 'react'
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 
+/**
+ * Компонент, который используется для создания
+ * кастомизированного календаря для выбора даты
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const UserCalendar = props => {
 
     const style = {

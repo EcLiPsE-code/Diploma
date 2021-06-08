@@ -1,0 +1,1 @@
+export const URL = 'https://diploma-b9eb0-default-rtdb.firebaseio.com'

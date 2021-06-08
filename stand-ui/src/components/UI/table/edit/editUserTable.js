@@ -12,34 +12,7 @@ import Checkbox from '@material-ui/core/Checkbox'
 import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
 import FilterListIcon from '@material-ui/icons/FilterList'
-import {Button} from "@material-ui/core";
-
-function createData(number, name) {
-    return { number, name}
-}
-
-const rows = [
-    createData(1, 'Протокол 1'),
-    createData(2, 'Протокол 2'),
-    createData(3, 'Протокол 3'),
-    createData(4, 'Протокол 4'),
-    createData(5, 'Протокол 5'),
-    createData(6, 'Протокол 6'),
-    createData(7, 'Протокол 7'),
-    createData(8, 'Протокол 8'),
-    createData(9, 'Протокол 9'),
-    createData(10, 'Протокол 10'),
-    createData(11, 'Протокол 11'),
-    createData(12, 'Протокол 12'),
-    createData(13, 'Протокол 13'),
-    createData(14, 'Протокол 14'),
-    createData(15, 'Протокол 15'),
-    createData(16, 'Протокол 16'),
-    createData(17, 'Протокол 17'),
-    createData(18, 'Протокол 18'),
-    createData(19, 'Протокол 19'),
-    createData(20, 'Протокол 20'),
-];
+import {Button} from '@material-ui/core'
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -59,8 +32,12 @@ function getComparator(order, orderBy) {
 
 function stableSort(array, comparator) {
     const stabilizedThis = array.map((el, index) => [el, index]);
+    console.log('stabilizedThis', stabilizedThis)
     stabilizedThis.sort((a, b) => {
         const order = comparator(a[0], b[0]);
+        console.log('a', a)
+        console.log('b', b)
+        console.log('order', order)
         if (order !== 0) return order;
         return a[1] - b[1];
     });
@@ -68,12 +45,17 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-    { id: 'number', label: 'Номер', sorted: true},
-    { id: 'name', label: 'Наименование протокола', sorted: true},
-    { id: 'button', label: '', sorted: false}
+    { id: 'surname', label: 'Фамилия'},
+    { id: 'name', label: 'Имя'},
+    { id: 'lastName', label: 'Отчество'},
+    { id: 'phone', label: 'Мобильный телефон'},
+    { id: 'email', label: 'Email'},
+    { id: 'role', label: 'Должность'},
+    { id: 'deleted', label: 'Работает/уволен'},
+    { id: 'button', label: ''}
 ];
 
-const ProtocolsTableHead = props => {
+const EmployeesTableHead = props => {
     const {onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
     const createSortHandler = property => event => {
         onRequestSort(event, property);
@@ -112,7 +94,7 @@ const ProtocolsTableHead = props => {
     );
 }
 
-const ProtoclsTableToolbar = props => {
+const EmployeesTableToolbar = props => {
     const { numSelected } = props;
 
     return (
@@ -126,9 +108,9 @@ const ProtoclsTableToolbar = props => {
             {
                 <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     {
-                        numSelected > 0? <div style={{marginLeft: '2vmin'}}>Выбрано {numSelected} протоколов</div>
+                        numSelected > 0? <div style={{marginLeft: '2vmin'}}>Выбрано {numSelected} сотрудников</div>
                             :
-                            <div style={{marginLeft: '2vmin'}}>Протоколы</div>
+                            <div style={{marginLeft: '2vmin'}}>Сотрудники</div>
                     }
                 </div>
             }
@@ -144,7 +126,7 @@ const ProtoclsTableToolbar = props => {
     );
 };
 
-const EditProtocolsTable = props => {
+const EmployeesTable = props => {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('surname');
     const [selected, setSelected] = React.useState([]);
@@ -160,7 +142,7 @@ const EditProtocolsTable = props => {
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
-            const newSelecteds = rows.map((n) => n.name);
+            const newSelecteds = props.employees.map((n) => n.name);
             setSelected(newSelecteds);
             return;
         }
@@ -210,22 +192,22 @@ const EditProtocolsTable = props => {
             }}
         >
             <TableContainer>
-                <ProtoclsTableToolbar numSelected={selected.length} />
+                <EmployeesTableToolbar numSelected={selected.length} />
                 <Table
                     aria-labelledby="tableTitle"
                     size={dense ? 'small' : 'medium'}
                     aria-label="enhanced table"
                 >
-                    <ProtocolsTableHead
+                    <EmployeesTableHead
                         numSelected={selected.length}
                         order={order}
                         orderBy={orderBy}
                         onSelectAllClick={handleSelectAllClick}
                         onRequestSort={handleRequestSort}
-                        rowCount={rows.length}
+                        rowCount={props.employees.length}
                     />
                     <TableBody>
-                        {stableSort(rows, getComparator(order, orderBy))
+                        {stableSort(props.employees, getComparator(order, orderBy))
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row, index) => {
                                 const isItemSelected = isSelected(row.name);
@@ -247,8 +229,13 @@ const EditProtocolsTable = props => {
                                                 inputProps={{ 'aria-labelledby': labelId }}
                                             />
                                         </TableCell>
-                                        <TableCell align={'center'}>{row.number}</TableCell>
+                                        <TableCell align={'center'}>{row.surname}</TableCell>
                                         <TableCell align='center'>{row.name}</TableCell>
+                                        <TableCell align='center'>{row.lastName}</TableCell>
+                                        <TableCell align='center'>{row.phone}</TableCell>
+                                        <TableCell align='center'>{row.email}</TableCell>
+                                        <TableCell align='center'>{row.position}</TableCell>
+                                        <TableCell align='center'>{row.deleted ? 'Уволен' : 'Работает'}</TableCell>
                                         <TableCell align='center'>
                                             <Button
                                                 onClick={() => alert('Редактировать')}
@@ -268,7 +255,7 @@ const EditProtocolsTable = props => {
                 }}
                 rowsPerPageOptions={[5, 10, 25]}
                 component="div"
-                count={rows.length}
+                count={props.employees.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onChangePage={handleChangePage}
@@ -278,4 +265,4 @@ const EditProtocolsTable = props => {
     );
 }
 
-export default EditProtocolsTable
+export default EmployeesTable

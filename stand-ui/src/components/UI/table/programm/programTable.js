@@ -19,7 +19,13 @@ const columns = [
     {id: 'strain2', label: 'Нагрузка П2, Н', align: 'center'},
 ]
 
-
+/**
+ * Компонент, который используется для создания таблицы,
+ * которая используется для добавления этапов программы
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const ProgramTable = props => {
 
     const [data, setData] = useState([])

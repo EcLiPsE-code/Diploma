@@ -1,18 +1,46 @@
 import React from 'react'
-import Auxiliary from "../../../hoc/auxiliary/auxiliary";
-import {Select} from "@material-ui/core";
-import classes from './userSelect.module.css'
+import Auxiliary from '../../../hoc/auxiliary/auxiliary'
+import {FormControl, InputLabel, MenuItem, Select} from '@material-ui/core'
 
+/**
+ * Компонент, котоырй используется для создания
+ * кастомного Select
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const UserSelect = props => {
+    const [age, setAge] = React.useState('')
+
+    const handleChange = (event) => {
+        setAge(event.target.value)
+    }
 
     return (
         <Auxiliary>
-            <Select
-                className={classes.Select}
-                style={props.style}
-                disabled={props.disabledType}
-            >
-            </Select>
+            <FormControl variant="outlined" size={'small'}>
+                <InputLabel
+                    id="demo-simple-select-outlined-label"
+                >
+                    {props.title}
+                </InputLabel>
+                <Select
+                    labelId="demo-simple-select-outlined-label"
+                    id="demo-simple-select-outlined"
+                    value={age}
+                    onChange={handleChange}
+                    label={props.title}
+                    style={props.style}
+                    disabled={props.disabledType}
+                >
+                    <MenuItem value="">
+                        <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+            </FormControl>
         </Auxiliary>
     )
 }

@@ -20,10 +20,11 @@ const DataTest = ({state, text}) => {
                 </Button>
             </div>
             <div>
-                <Input
-                    variant={'outlined'}
-                    label={'Протокол'}
-                    defaultValue={'Протокол'}
+                <UserSelect
+                    title={'Протокол'}
+                    style={{
+                        width: '15vw',
+                    }}
                     disabledType={state}
                 />
             </div>
@@ -61,7 +62,10 @@ const DataTest = ({state, text}) => {
             </div>
             <div>
                 <UserSelect
-                    style={{width: '10vw'}}
+                    title={'Методология'}
+                    style={{
+                        width: '15vw',
+                    }}
                     disabledType={state}
                 />
             </div>

@@ -5,6 +5,12 @@ import EditData from "../../../components/pages/personalArea/components/editData
 import {connect} from 'react-redux'
 import AccountData from "../../../components/UI/dialog/changeAccountData";
 
+/**
+ * Компонент, который рендерит личную страницу каждого пользователя
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const PersonalArea = props => {
 
     const [account, setAccount] = useState(false)
@@ -13,7 +19,11 @@ const PersonalArea = props => {
     const accountClose = () => setAccount(false)
 
     return (
-        <div>
+        <div style={{
+            display: 'flex',
+            margin: 'auto'
+        }}
+        >
             <AccountData
                 open={account}
                 handleClickClose={accountClose}

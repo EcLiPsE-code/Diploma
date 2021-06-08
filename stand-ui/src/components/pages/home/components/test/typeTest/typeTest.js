@@ -2,6 +2,13 @@ import React from 'react'
 import classes from './typeTest.module.css'
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline'
 
+/**
+ * Компонент, который необходим для выбора типа испытания
+ * @param state
+ * @param onClick
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const TypeTest = ({state, onClick}) => {
 
     const stl = {

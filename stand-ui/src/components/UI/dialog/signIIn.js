@@ -6,6 +6,13 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 
+/**
+ * Компонент, который нужен для формирования формы
+ * авторизации в системе
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const SignIn = props => {
     return (
         <div>

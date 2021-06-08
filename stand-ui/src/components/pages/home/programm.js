@@ -1,19 +1,25 @@
 import React, {useState} from 'react'
 import classes from './css/programm.module.css'
-import DashboardIcon from "@material-ui/icons/Dashboard"
-import Button from "@material-ui/core/Button"
-import {Menu, MenuItem} from "@material-ui/core"
-import AddIcon from "@material-ui/icons/Add"
-import CreateIcon from "@material-ui/icons/Create"
-import SaveIcon from "@material-ui/icons/Save"
-import GetAppIcon from "@material-ui/icons/GetApp"
-import ProgramTable from "../../UI/table/programm/programTable"
-import NewProgram from "../../UI/dialog/program/newProgram";
-import Auxiliary from "../../../hoc/auxiliary/auxiliary";
-import ChangeNameProgram from "../../UI/dialog/program/changeNameProgram";
-import TemplateProgram from "../../UI/dialog/program/templateProgram";
-import LoadingTemplate from "../../UI/dialog/program/loadTemplate";
+import DashboardIcon from '@material-ui/icons/Dashboard'
+import Button from '@material-ui/core/Button'
+import {Menu, MenuItem} from '@material-ui/core'
+import AddIcon from '@material-ui/icons/Add'
+import CreateIcon from '@material-ui/icons/Create'
+import SaveIcon from '@material-ui/icons/Save'
+import GetAppIcon from '@material-ui/icons/GetApp'
+import ProgramTable from '../../UI/table/programm/programTable'
+import NewProgram from '../../UI/dialog/program/newProgram'
+import Auxiliary from '../../../hoc/auxiliary/auxiliary'
+import ChangeNameProgram from '../../UI/dialog/program/changeNameProgram'
+import TemplateProgram from '../../UI/dialog/program/templateProgram'
+import LoadingTemplate from '../../UI/dialog/program/loadTemplate'
 
+/**
+ * Компонент, который отвечает за рендеринг страницы с испытаниями
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Program = props => {
 
     const [program, setProgram] = useState(null)
@@ -53,6 +59,11 @@ const Program = props => {
     const handleProgramClose = () => setProgram(null)
     const handleTemplateClose = () => setTemplate(null)
 
+    const createNewStepHandler = () => {
+        props.addStepHandler()
+        handleProgramClose()
+    }
+
     return (
         <Auxiliary>
             <LoadingTemplate
@@ -69,11 +80,14 @@ const Program = props => {
                 state={newProgramDialog}
                 openHandler={newProgramClickOpenHandler}
                 closeHandler={newProgramClickCloseHandler}
+                create={props.createNewProgram}
             />
             <ChangeNameProgram
                 state={changeNameProgram}
                 openHandler={changeNameProgramOpenHandler}
                 closeHandler={changeNameProgramCloseHandler}
+                rename={props.renameProgram}
+                program={props.programName}
             />
             <div className={classes.Programs}>
                 <div className={classes.TitleProgram} style={{
@@ -123,7 +137,7 @@ const Program = props => {
                             }}/>
                             <span>Переименовать программу</span>
                         </MenuItem>
-                        <MenuItem onClick={() => props.programClose()}>
+                        <MenuItem onClick={() => handleProgramClose()}>
                             <AddIcon style={{
                                 color: 'green'
                             }}/>
@@ -170,7 +184,9 @@ const Program = props => {
                     </div>
                 </div>
                 <div className={classes.Table}>
-                    <ProgramTable />
+                    <ProgramTable
+                        stepsProgram={props.steps}
+                    />
                 </div>
             </div>
         </Auxiliary>

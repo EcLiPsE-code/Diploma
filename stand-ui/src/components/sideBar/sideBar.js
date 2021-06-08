@@ -18,6 +18,12 @@ import {Collapse, Divider, Drawer} from '@material-ui/core'
 import {NavLink} from 'react-router-dom'
 import {ExpandLess, ExpandMore} from '@material-ui/icons'
 
+/**
+ * Компонент, который рендерит боковое выезжающее меню
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Sidebar = props => {
 
     const [open, setOpen] = useState(false)

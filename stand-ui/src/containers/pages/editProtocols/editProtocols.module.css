@@ -1,5 +1,6 @@
 .EditProtocolsWrapper{
     display: flex;
+    margin: auto;
     width: 60vw;
     box-shadow: 0 .15rem 1.75rem 0 rgba(58, 59, 69, .15);
     height: 70vh;

@@ -1,24 +1,32 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import 'date-fns'
 import classes from './protocols.module.css'
 import Input from "../../../components/UI/input/input"
-import {Button, Menu, MenuItem} from '@material-ui/core'
+import {Button, CircularProgress, Menu, MenuItem} from '@material-ui/core'
 import ProtocolsTable from '../../../components/UI/table/protocols/protocolsTable'
 import UserCalendar from '../../../components/UI/calendar/calender'
 import SettingsIcon from '@material-ui/icons/Settings'
 import Auxiliary from '../../../hoc/auxiliary/auxiliary'
+import {
+    loadProtocols,
+    setDateBegin,
+    setDateEnd,
+    setProgramName,
+    filterData
+} from '../../../store/actionCreators/protocolsAction'
+import {connect} from 'react-redux'
 
+/**
+ * Компонент, который рендерит страницу "Протоколы"
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Protocols = props => {
 
-    const [selectedBeginDate, setSelectedBeginDate] = useState(null);
-    const [selectedEndDate, setSelectedEndDate] = useState(null)
-    const [settings, setSettings] = useState(null)
-
-    const settingsOpenHandler = event => setSettings(event.currentTarget)
-    const settingsCloseHandler = () => setSettings(null)
-
-    const handleBeginDateChange = date => setSelectedBeginDate(date)
-    const handleEndDateChange = date => setSelectedEndDate(date)
+    useEffect(() => {
+        props.fetchLoadProtocols()
+    }, [])
 
     return (
         <Auxiliary>
@@ -43,6 +51,7 @@ const Protocols = props => {
                                         color: '#fff',
                                         padding: '1vmin 2vmin'
                                     }}
+                                    onClick={() => props.filterDataHandler()}
                                 >
                                     Поиск
                                 </Button>
@@ -52,27 +61,47 @@ const Protocols = props => {
                                     label={'Программа'}
                                     defaultValue={'Программа'}
                                     variant={'outlined'}
+                                    onChange={event => props.setProgramName(event.currentTarget.value)}
                                 />
                             </span>
                             <span style={{
                                 marginLeft: '2vmin'
                             }}>
                                 <UserCalendar
-                                    onChange={handleBeginDateChange}
+                                    onChange={date => props.setBeginDateHandler(date)}
                                     minDate={new Date()}
-                                    value={selectedBeginDate}
+                                    value={props.selectedBeginDate}
                                 />
                             </span>
                             <span>
                                 <UserCalendar
-                                    onChange={handleEndDateChange}
+                                    onChange={date => props.setDateEnd(date)}
                                     minDate={new Date(+(new Date()) + 3600 * 24 * 1000)}
-                                    value={selectedEndDate}
+                                    value={props.selectedEndDate}
                                 />
                             </span>
                         </div>
-                        <div className={classes.ProtocolBodyTable}>
-                            <ProtocolsTable/>
+                        <div>
+                            {
+                                props.isLoading?
+                                    (
+                                        <div
+                                            style={{
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                height: '40vh'
+                                            }}
+                                        >
+                                            <CircularProgress />
+                                        </div>
+                                    )
+                                    :
+                                    <ProtocolsTable
+                                        isLoading={props.isLoading}
+                                        protocols={props.protocols}
+                                    />
+                            }
                         </div>
                     </div>
                 </div>
@@ -89,4 +118,24 @@ const Protocols = props => {
     )
 }
 
-export default Protocols
+function mapStateToProps(state){
+    return {
+        selectedBeginDate: state.protocolsReducer.selectedBeginDate, //дата начала сортировки
+        selectedEndDate: state.protocolsReducer.selectedEndDate, //дата окончания сортировки
+        programName: state.protocolsReducer.programName,
+        protocols: state.protocolsReducer.protocols, //массив протоколов испытаний
+        isLoading: state.protocolsReducer.isLoading //загружены данные или нет
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        fetchLoadProtocols: () => dispatch(loadProtocols()),
+        setBeginDateHandler: date => dispatch(setDateBegin(date)),
+        setDateEnd: date => dispatch(setDateEnd(date)),
+        setProgramName: name => dispatch(setProgramName(name)),
+        filterDataHandler: () => dispatch(filterData())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Protocols)

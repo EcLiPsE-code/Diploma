@@ -3,7 +3,8 @@
     height: 70vh;
     width: 90vw;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    background-image: url('https://avatars.mds.yandex.net/get-zen_doc/1360848/pub_5e1c0d5dd4f07a00af66c405_5e1c14e53642b600afd3bcf1/scale_1200');
+    background: rgb(49,46,92);
+    background: linear-gradient(120deg, rgba(49,46,92,1) 0%, rgba(194,194,213,1) 75%, rgba(0,212,255,1) 100%);
 }
 
 .StartPageInner{
@@ -24,7 +25,23 @@
 }
 .Body{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     height: 100%;
+}
+
+.BodyHead{
+    display: flex;
+    font-size: 1.3rem;
+    color: #fff;
+    margin: 3vmin 5vmin;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    margin: 2vmin 0;
+    font-size: 1.1rem;
 }

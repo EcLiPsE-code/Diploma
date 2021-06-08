@@ -3,6 +3,13 @@ import classes from '../css/editUsername.module.css'
 import Input from "../../../UI/input/input";
 import {Button} from "@material-ui/core";
 
+/**
+ * Компонент UI, который используется для ввода и редактирования личной информации
+ * каждого сотрудника
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const EditData = props => {
 
     const [state, setState] = useState(false)

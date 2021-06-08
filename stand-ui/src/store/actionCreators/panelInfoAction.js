@@ -1,4 +1,4 @@
-import {LOAD_SYSTEM} from "../../actionsType/panelInfo";
+import {LOAD_SYSTEM} from "../actionsType/actionsType";
 
 export function loadSystem(){
     return async dispatch => {

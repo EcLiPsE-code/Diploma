@@ -1,10 +1,16 @@
 import React, {useCallback, useState} from 'react'
 import classes from './css/test.module.css'
-import Tester from './components/test/tester/tester'
 import TypeTest from './components/test/typeTest/typeTest'
 import DataTest from './components/test/dataTest/dataTest'
 import {connect} from 'react-redux'
 
+/**
+ * Компонент, который нужен для рендеринга формы, которая используется для
+ * ввода данных на каждой позиции во время проведения испытания
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Test = props => {
 
     const [state, setState] = useState(false)

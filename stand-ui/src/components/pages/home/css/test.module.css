@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     border: 1px solid lightgray;
-    height: 20vh;
+    height: auto;
 }
 
 .Test .Title{

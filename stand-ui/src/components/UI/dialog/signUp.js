@@ -6,6 +6,13 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 
+/**
+ * Компонент, который формирует диалоговое окно
+ * для регистрации пользователя в системе
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const SignUp = props => {
     return (
         <div>
@@ -14,7 +21,7 @@ const SignUp = props => {
                 onClose={() => props.handleClickClose()}
                 aria-labelledby="form-dialog-title"
             >
-                <DialogTitle id="form-dialog-title">Зарегестрироваться</DialogTitle>
+                <DialogTitle id="form-dialog-title">Зарегистрироваться</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
@@ -80,7 +87,7 @@ const SignUp = props => {
                         Отмена
                     </Button>
                     <Button onClick={() => props.handleClickClose()} color="primary">
-                        Зарегестрироваться
+                        Зарегистрироваться
                     </Button>
                 </DialogActions>
             </Dialog>

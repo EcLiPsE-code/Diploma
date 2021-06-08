@@ -9,6 +9,12 @@ import Input from '../../input/input'
 import TemplateTable from '../../table/template/templatesTable'
 import UserCalendar from "../../calendar/calender"
 
+/**
+ * Компонент, который необходим для выбора шаблона программы из БД
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const LoadingTemplate = props => {
 
     const [selectedBeginDate, setSelectedBeginDate] = React.useState(null);

@@ -2,6 +2,12 @@ import React from 'react'
 import classes from './charts.module.css'
 import UserChart from "../../../components/pages/charts/components/chart"
 
+/**
+ * Компонент, для рендеринга страницы графиков
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Charts = props => {
     return (
         <div className={classes.ChartsWrapper}>

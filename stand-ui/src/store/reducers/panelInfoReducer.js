@@ -1,4 +1,4 @@
-import {LOAD_SYSTEM} from "../actionsType/panelInfo";
+import {LOAD_SYSTEM} from "../actionsType/actionsType";
 
 const initialState = {
     modeSystem: true, // Ручной(false) или Автомат(true)

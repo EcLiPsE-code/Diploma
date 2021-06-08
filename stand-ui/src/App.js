@@ -7,9 +7,9 @@ import Accidents from './containers/pages/accidents/accidents'
 import Charts from './containers/pages/charts/charts'
 import PersonalArea from './containers/pages/personalArea/personalArea'
 import StartPage from './containers/pages/start/start'
-import EditUsers from "./containers/pages/editUsers/editUsers";
-import EditProtocols from "./containers/pages/editProtocols/EditProtocols";
-import EditMethodology from "./containers/pages/editMethodologys/editMethodologys";
+import EditUsers from './containers/pages/editUsers/editUsers'
+import EditProtocols from './containers/pages/editProtocols/EditProtocols'
+import EditMethodology from './containers/pages/editMethodologys/editMethodologys'
 
 function App() {
   return (

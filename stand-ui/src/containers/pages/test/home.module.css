@@ -1,4 +1,7 @@
 .HomeWrapper{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
     height: 100%;
-    width: 90vw;
+    width: 95vw;
 }

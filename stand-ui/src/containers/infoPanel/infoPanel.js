@@ -4,8 +4,15 @@ import CurrentAccidents from '../../components/info/currentAccidents/currentAcci
 import RealtimeData from '../../components/info/realtimeData/realtimeData'
 import classes from './infoPanel.module.css'
 import {connect} from 'react-redux'
-import {loadSystem} from '../../store/actionCreators/panelInfo/panelInfoAction'
+import {loadSystem} from '../../store/actionCreators/panelInfoAction'
 
+/**
+ * Компонент, необходимый для формирования панели,
+ * на которой отображаются числовые данные во время проведения испытания
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const InfoPanel = props => {
 
     useEffect(() => {

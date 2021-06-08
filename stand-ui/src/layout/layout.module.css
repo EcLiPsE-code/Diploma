@@ -11,6 +11,7 @@
 }
 
 .BodyBlock{
+    height: 75vh;
     display: flex;
     margin: auto auto;
 }

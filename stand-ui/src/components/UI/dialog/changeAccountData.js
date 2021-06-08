@@ -6,6 +6,13 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 
+/**
+ * Компонент, используемый для изменения пароля от учетной записи
+ * пользователя
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const AccountData = props => {
     return (
         <div>
@@ -20,7 +27,7 @@ const AccountData = props => {
                         autoFocus
                         margin="dense"
                         id="email"
-                        label="Email"
+                        label="Старый пароль"
                         type="email"
                         fullWidth
                     />
@@ -30,7 +37,7 @@ const AccountData = props => {
                         autoFocus
                         margin="dense"
                         id="password"
-                        label="Password"
+                        label="Новый пароль"
                         type="password"
                         fullWidth
                     />
