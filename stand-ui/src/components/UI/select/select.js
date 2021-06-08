@@ -33,12 +33,23 @@ const UserSelect = props => {
                     style={props.style}
                     disabled={props.disabledType}
                 >
-                    <MenuItem value="">
+                    <MenuItem value=''>
                         <em>None</em>
                     </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    {
+                        props.title === 'Методология'?
+                            props.methodologysArr.map(item => {
+                                return (
+                                    <MenuItem value={item.name}>{item.name}</MenuItem>
+                                )
+                            })
+                            :
+                            props.protocolsArr.map(item => {
+                                return (
+                                    <MenuItem value={item.name}>{item.name}</MenuItem>
+                                )
+                            })
+                    }
                 </Select>
             </FormControl>
         </Auxiliary>

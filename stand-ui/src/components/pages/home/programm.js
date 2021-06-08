@@ -121,7 +121,9 @@ const Program = props => {
                             open={Boolean(program)}
                             onClose={() => handleProgramClose()}
                         >
-                        <MenuItem onClick={() => handleProgramClose()}>
+                        <MenuItem
+                            onClick={() => handleProgramClose()}
+                        >
                             <AddIcon style={{
                                 color: 'green'
                             }}/>
@@ -131,13 +133,19 @@ const Program = props => {
                                  Создать новую программу
                             </span>
                         </MenuItem>
-                        <MenuItem onClick={() => changeNameProgramOpenHandler()}>
+                        <MenuItem
+                            onClick={() => changeNameProgramOpenHandler()}
+                            disabled={!props.programName}
+                        >
                             <CreateIcon style={{
                                 color: 'green'
                             }}/>
                             <span>Переименовать программу</span>
                         </MenuItem>
-                        <MenuItem onClick={() => handleProgramClose()}>
+                        <MenuItem
+                            onClick={() => createNewStepHandler()}
+                            disabled={!props.programName}
+                        >
                             <AddIcon style={{
                                 color: 'green'
                             }}/>
@@ -165,7 +173,10 @@ const Program = props => {
                                 open={Boolean(template)}
                                 onClose={() => handleTemplateClose()}
                             >
-                            <MenuItem onClick={() => templateProgramOpenHandler()}>
+                            <MenuItem
+                                onClick={() => templateProgramOpenHandler()}
+                                disabled={props.steps.length === 0}
+                            >
                                 <SaveIcon style={{
                                     color: 'green'
                                 }}/>
@@ -185,7 +196,12 @@ const Program = props => {
                 </div>
                 <div className={classes.Table}>
                     <ProgramTable
+                        typeTest={props.typeTest}
                         stepsProgram={props.steps}
+                        deleteStepHandler={props.deleteStep}
+                        saveChangesStepHandler={props.saveChangesStep}
+                        editDataStepHandler={props.editDataStep}
+                        cancelChangesStepHandler={props.cancelChangesStep}
                     />
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import {EditMethodologys, EditProtocols} from '../actionsType/actionsType'
+import {EditProtocols} from '../actionsType/actionsType'
 
 const initialState = {
     protocols: [],

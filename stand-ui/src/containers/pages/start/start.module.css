@@ -1,5 +1,6 @@
 .StartPageWrapper {
     display: flex;
+    margin: auto;
     height: 70vh;
     width: 90vw;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);

@@ -2,13 +2,13 @@ import React, {useState} from 'react'
 import Paper from '@material-ui/core/Paper'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
 import TableContainer from '@material-ui/core/TableContainer'
-import TableHead from '@material-ui/core/TableHead'
 import TablePagination from '@material-ui/core/TablePagination'
-import TableRow from '@material-ui/core/TableRow'
+import {getComparator, stableSort} from '../../../../helerps/sort/sort'
+import HeadSteps from '../../tables/steps/HeadSteps'
+import TableRowSteps from '../../tables/steps/TableRowSteps'
 
-const columns = [
+const headCells = [
     {id: 'stage', label: 'Этап', align: 'center'},
     {id: 'pressure1', label: 'Давление П1, кПа', align: 'center'},
     {id: 'strain1', label: 'Нагрузка П1, Н', align: 'center'},
@@ -17,6 +17,7 @@ const columns = [
     {id: 'mileage', label: 'Пробег, км', align: 'center'},
     {id: 'pressure2', label: 'Давление П2, кПа', align: 'center'},
     {id: 'strain2', label: 'Нагрузка П2, Н', align: 'center'},
+    {id: 'btns', label: '', align: 'center'}
 ]
 
 /**
@@ -27,79 +28,82 @@ const columns = [
  * @constructor
  */
 const ProgramTable = props => {
+    const [order, setOrder] = useState('asc')
+    const [orderBy, setOrderBy] = useState(null)
+    const [page, setPage] = useState(0)
+    const [rowsPerPage, setRowsPerPage] = useState(5)
 
-    const [data, setData] = useState([])
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const handleRequestSort = (event, property) => {
+        const isAsc = orderBy === property && order === 'asc'
+        setOrder(isAsc ? 'desc' : 'asc')
+        setOrderBy(property)
+    }
 
     const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
+        setPage(newPage)
+    }
 
     const handleChangeRowsPerPage = event => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
-    };
-
-    if (data){
-       data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(item => {
-           return (
-               <TableRow hover role='checkbox' tabIndex={-1} key={item.id}>
-                   {
-                       columns.map(column => {
-                           const value = item[column.id]
-                           return (
-                               <TableCell key={column.id} align={column.align}>
-                                    value
-                               </TableCell>
-                           )
-                       })
-                   }
-               </TableRow>
-           )
-       })
+        setRowsPerPage(parseInt(event.target.value, 10))
+        setPage(0)
     }
 
     return (
-        <Paper style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            width: '100%',
-            height: '40vh'
-        }}>
-            <div>
-                <TableContainer>
-                    <Table stickyHeader aria-label="sticky table">
-                        <TableHead>
-                            <TableRow>
-                                {columns.map((column) => (
-                                    <TableCell
-                                        key={column.id}
-                                        align={column.align}
-                                    >
-                                        {column.label}
-                                    </TableCell>
-                                ))}
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {data}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </div>
-            <div>
-                <TablePagination
-                    rowsPerPageOptions={[10, 25, 100]}
-                    component="div"
-                    count={data.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onChangePage={handleChangePage}
-                    onChangeRowsPerPage={handleChangeRowsPerPage}
-                />
-            </div>
+        <Paper
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                width: '100%',
+                justifyContent: 'space-between',
+                minHeight: '40vh',
+                maxHeight: '40vh'
+            }}
+        >
+            <TableContainer>
+                <Table
+                    aria-labelledby="tableTitle"
+                    size={'small'}
+                    aria-label="enhanced table"
+                >
+                    <HeadSteps
+                        order={order}
+                        orderBy={orderBy}
+                        onRequestSort={handleRequestSort}
+                        rowCount={props.stepsProgram.length}
+                        cells={headCells}
+                    />
+                    <TableBody>
+                        {
+                            stableSort(props.stepsProgram, getComparator(order, orderBy))
+                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                .map((row, index) => {
+
+                                    return (
+                                        <TableRowSteps
+                                            rowspan={row}
+                                            typeTest={props.typeTest}
+                                            deleteStep={props.deleteStepHandler}
+                                            saveChangesStep={props.saveChangesStepHandler}
+                                            editDataStep={props.editDataStepHandler}
+                                            cancelChangesStep={props.cancelChangesStepHandler}
+                                        />
+                                    )
+                                })}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <TablePagination
+                style={{
+                    minHeight: '7vh'
+                }}
+                rowsPerPageOptions={[5, 10, 25]}
+                component="div"
+                count={props.stepsProgram.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onChangePage={handleChangePage}
+                onChangeRowsPerPage={handleChangeRowsPerPage}
+            />
         </Paper>
     )
 }

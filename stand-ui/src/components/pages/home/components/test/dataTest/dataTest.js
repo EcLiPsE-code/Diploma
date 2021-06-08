@@ -1,10 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Button from "@material-ui/core/Button"
 import Input from "../../../../../UI/input/input"
 import UserSelect from "../../../../../UI/select/select"
 import Auxiliary from "../../../../../../hoc/auxiliary/auxiliary"
 
-const DataTest = ({state, text}) => {
+const DataTest = props => {
 
     return (
         <Auxiliary>
@@ -12,61 +12,73 @@ const DataTest = ({state, text}) => {
                 <Button
                     variant="contained"
                     style={{
-                        backgroundColor: state? '#a90329' : '#739e73',
+                        backgroundColor: props.state? '#a90329' : '#739e73',
                         color: '#fff',
                     }}
                 >
-                    {text}
+                    {props.text}
                 </Button>
             </div>
             <div>
                 <UserSelect
+                    protocolsArr={props.protocols}
+                    methodologysArr={props.methodologys}
                     title={'Протокол'}
                     style={{
                         width: '15vw',
                     }}
-                    disabledType={state}
+                    disabledType={props.state}
                 />
             </div>
             <div>
                 <Input
                     variant={'outlined'}
                     label={'Модель'}
+                    key={'model'}
                     defaultValue={'Модель'}
-                    disabledType={state}
+                    onChange={changeDataHandler}
+                    disabledType={props.state}
                 />
             </div>
             <div>
                 <Input
                     variant={'outlined'}
                     label={'Размер'}
+                    key={'size'}
                     defaultValue={'0'}
-                    disabledType={state}
+                    onChange={changeDataHandler}
+                    disabledType={props.state}
                 />
             </div>
             <div>
                 <Input
                     variant={'outlined'}
                     label={'Заводской номер'}
+                    key={'number'}
                     defaultValue={'Заводской номер'}
-                    disabledType={state}
+                    onChange={changeDataHandler}
+                    disabledType={props.state}
                 />
             </div>
             <div>
                 <Input
                     variant={'outlined'}
                     label={'Rdin min'}
+                    key={'Rdin'}
                     defaultValue={'255'}
-                    disabledType={state}
+                    onChange={changeDataHandler}
+                    disabledType={props.state}
                 />
             </div>
             <div>
                 <UserSelect
+                    protocolsArr={props.protocols}
+                    methodologysArr={props.methodologys}
                     title={'Методология'}
                     style={{
                         width: '15vw',
                     }}
-                    disabledType={state}
+                    disabledType={props.state}
                 />
             </div>
         </Auxiliary>
