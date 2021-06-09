@@ -5,6 +5,7 @@ import RealtimeData from '../../components/info/realtimeData/realtimeData'
 import classes from './infoPanel.module.css'
 import {connect} from 'react-redux'
 import {loadSystem} from '../../store/actionCreators/panelInfoAction'
+import {startTest} from "../../store/actionCreators/testAction";
 
 /**
  * Компонент, необходимый для формирования панели,
@@ -31,7 +32,9 @@ const InfoPanel = props => {
                 currentAccidentWarnong={props.currentAccidentWarning}
                 currentAccidentError={props.currentAccidentError}
             />
-            <RealtimeData/>
+            <RealtimeData
+                startTestHandler={props.startTestHandler}
+            />
         </div>
     )
 }
@@ -49,7 +52,8 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return{
-        fetchLoadSystem: () => dispatch(loadSystem())
+        fetchLoadSystem: () => dispatch(loadSystem()),
+        startTestHandler: () => dispatch(startTest())
     }
 }
 

@@ -14,26 +14,10 @@ import {connect} from 'react-redux'
 const Test = props => {
 
     const [state, setState] = useState(false)
-    const [data, setData] = useState({
-        protocol: null,
-        model: null,
-        size: null,
-        number: null,
-        rDin: null,
-        methodology: null
-    })
 
     const onClickHandler = useCallback(() => {
         setState(prev => !prev)
     }, [state])
-
-    const changeDataHandler = (event, key) => {
-        setData({
-            ...data,
-            [key] : event.currentTarget.value
-        })
-        props.keyPosition === 'pos1'? props.setDataTestPos1Handler(data) : props.setDataTestPos2Handler(data)
-    }
 
     return (
         <div className={classes.Test}>
@@ -49,9 +33,8 @@ const Test = props => {
                     methodologys={props.methodologys}
                     protocols={props.protocols}
                     text={'Поз.1'}
-                    keyPosition={'pos1'}
-                    setDataTestPos1Handler={props.setDataTestPos1Handler}
-                    setDataTestPos2Handler={props.setDataTestPos2Handler}
+                    keyPosition={'position1'}
+                    setDataTestHandler={props.setDataTestHandler}
                 />
             </div>
             <div className={classes.HeadData}>
@@ -60,9 +43,8 @@ const Test = props => {
                     protocols={props.protocols}
                     text={'Поз.2'}
                     state={state}
-                    keyPosition={'pos2'}
-                    setDataTestPos1Handler={props.setDataTestPos1Handler}
-                    setDataTestPos2Handler={props.setDataTestPos2Handler}
+                    keyPosition={'position2'}
+                    setDataTestHandler={props.setDataTestHandler}
                 />
             </div>
         </div>

@@ -10,10 +10,10 @@ import {FormControl, InputLabel, MenuItem, Select} from '@material-ui/core'
  * @constructor
  */
 const UserSelect = props => {
-    const [age, setAge] = React.useState('')
+    const [value, setValue] = React.useState('')
 
-    const handleChange = (event) => {
-        setAge(event.target.value)
+    const handleChange = event => {
+        setValue(event.target.value)
     }
 
     return (
@@ -27,26 +27,33 @@ const UserSelect = props => {
                 <Select
                     labelId="demo-simple-select-outlined-label"
                     id="demo-simple-select-outlined"
-                    value={age}
-                    onChange={handleChange}
+                    value={value}
+                    onChange={event => handleChange(event)}
                     label={props.title}
                     style={props.style}
                     disabled={props.disabledType}
                 >
-                    <MenuItem value=''>
-                        <em>None</em>
-                    </MenuItem>
                     {
                         props.title === 'Методология'?
                             props.methodologysArr.map(item => {
                                 return (
-                                    <MenuItem value={item.name}>{item.name}</MenuItem>
+                                    <MenuItem
+                                        value={item.name}
+                                        onClick={() => props.onChange(props.keyPosition, props.keyInput, item.name)}
+                                    >
+                                        {item.name}
+                                    </MenuItem>
                                 )
                             })
                             :
                             props.protocolsArr.map(item => {
                                 return (
-                                    <MenuItem value={item.name}>{item.name}</MenuItem>
+                                    <MenuItem
+                                        value={item.name}
+                                        onClick={() => props.onChange(props.keyPosition, props.keyInput, item.name)}
+                                    >
+                                        {item.name}
+                                    </MenuItem>
                                 )
                             })
                     }

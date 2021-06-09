@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import classes from './typeTest.module.css'
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline'
-import RotateRightIcon from '@material-ui/icons/RotateRight';
-import IconButton from "@material-ui/core/IconButton";
+import RotateRightIcon from '@material-ui/icons/RotateRight'
+import IconButton from '@material-ui/core/IconButton'
 
 /**
  * Компонент, который необходим для выбора типа испытания
@@ -22,6 +22,10 @@ const TypeTest = ({state, onClick, setTypeTest}) => {
         setTypeTest(typeTest)
         onClick()
     }
+
+    useEffect(() => {
+        setTypeTestHandler('Динамическое')
+    }, [])
 
     return (
         <div className={classes.TypeTest}>

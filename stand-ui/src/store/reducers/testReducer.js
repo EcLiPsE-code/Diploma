@@ -61,13 +61,9 @@ const handlers = {
         ...state,
         typeTest: payload
     }),
-    [Test.SET_DATA_TEST_POS1] : (state, {payload}) => ({
+    [Test.SET_DATA_TEST] : (state, {payload}) => ({
         ...state,
-        position1: payload
-    }),
-    [Test.SET_DATA_TEST_POS2] : (state, {payload}) => ({
-        ...state,
-        position2: payload
+        [payload.typePosition]: payload.newState
     }),
     DEFAULT: state => state
 }

@@ -11,8 +11,7 @@ export const Test = {
     EDIT: 'TEST/EDIT',
     CANCEL_CHANGES: 'TEST/CANCEL',
     SET_TYPE_TEST: 'TEST/SET_TYPE',
-    SET_DATA_TEST_POS1: 'TEST/SET_DATA_POS1',
-    SET_DATA_TEST_POS2: 'TEST/SET_DATA_POS2'
+    SET_DATA_TEST: 'TEST/SET_DATA',
 }
 
 export const Protocols = {

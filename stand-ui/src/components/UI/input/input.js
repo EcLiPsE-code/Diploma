@@ -17,7 +17,8 @@ const Input = props =>{
         variant,
         onChange,
         disabledType,
-        key
+        keyInput,
+        keyPosition
     } = props
 
     return (
@@ -29,7 +30,7 @@ const Input = props =>{
                 variant={variant? variant : 'filled'}
                 type={type}
                 disabled={disabledType}
-                onChange={onChange? event => onChange(event, key) : null}
+                onChange={onChange? event => onChange(keyPosition, keyInput, event.currentTarget.value) : null}
             />
         </Auxiliary>
     )

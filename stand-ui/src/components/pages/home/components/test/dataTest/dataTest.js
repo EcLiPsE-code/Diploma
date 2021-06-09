@@ -27,6 +27,9 @@ const DataTest = props => {
                     style={{
                         width: '15vw',
                     }}
+                    keyInput={'protocol'}
+                    keyPosition={props.keyPosition}
+                    onChange={props.setDataTestHandler}
                     disabledType={props.state}
                 />
             </div>
@@ -34,40 +37,40 @@ const DataTest = props => {
                 <Input
                     variant={'outlined'}
                     label={'Модель'}
-                    key={'model'}
-                    defaultValue={'Модель'}
-                    onChange={changeDataHandler}
+                    keyInput={'model'}
+                    keyPosition={props.keyPosition}
                     disabledType={props.state}
+                    onChange={props.setDataTestHandler}
                 />
             </div>
             <div>
                 <Input
                     variant={'outlined'}
                     label={'Размер'}
-                    key={'size'}
-                    defaultValue={'0'}
-                    onChange={changeDataHandler}
+                    keyInput={'size'}
+                    keyPosition={props.keyPosition}
                     disabledType={props.state}
+                    onChange={props.setDataTestHandler}
                 />
             </div>
             <div>
                 <Input
                     variant={'outlined'}
                     label={'Заводской номер'}
-                    key={'number'}
-                    defaultValue={'Заводской номер'}
-                    onChange={changeDataHandler}
+                    keyInput={'number'}
+                    keyPosition={props.keyPosition}
                     disabledType={props.state}
+                    onChange={props.setDataTestHandler}
                 />
             </div>
             <div>
                 <Input
                     variant={'outlined'}
                     label={'Rdin min'}
-                    key={'Rdin'}
-                    defaultValue={'255'}
-                    onChange={changeDataHandler}
+                    keyInput={'rDin'}
+                    keyPosition={props.keyPosition}
                     disabledType={props.state}
+                    onChange={props.setDataTestHandler}
                 />
             </div>
             <div>
@@ -78,6 +81,9 @@ const DataTest = props => {
                     style={{
                         width: '15vw',
                     }}
+                    keyInput={'methodology'}
+                    keyPosition={props.keyPosition}
+                    onChange={props.setDataTestHandler}
                     disabledType={props.state}
                 />
             </div>

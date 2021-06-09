@@ -1,6 +1,13 @@
 import {URL} from '../../constants/index'
 import {Test} from '../actionsType/actionsType'
 
+export function startTest(){
+    return (dispatch, getState) => {
+        const state = getState().testReducer
+        console.log(state)
+    }
+}
+
 export function createNewProgram(name){
     return {
         type: Test.CREATE_NEW_PROGRAM,
@@ -123,23 +130,18 @@ export function setTypeTest(typeTest){
     }
 }
 
-export function setDataTestPos1(data){
-    const {protocol, model, size, number, rDin, methodology} = data
-    console.log(`pos1: ${data}`)
-    return {
-        type: Test.SET_DATA_TEST_POS1,
-        payload: {
-            protocol, model, size, number, rDin, methodology
+export function setDataTest(typePosition, key, value){
+    return (dispatch, getState) => {
+        const state = getState().testReducer[typePosition]
+        const newState = {
+            ...state,
+            [key]: value
         }
-    }
-}
-
-export function setDataTestPos2(data){
-    const {protocol, model, size, number, rDin, methodology} = data
-    return {
-        type: Test.SET_DATA_TEST_POS2,
-        payload: {
-            protocol, model, size, number, rDin, methodology
-        }
+        dispatch({
+            type: Test.SET_DATA_TEST,
+            payload: {
+                typePosition, newState
+            }
+        })
     }
 }

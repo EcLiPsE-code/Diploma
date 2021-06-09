@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import {
     addStep, cancelChangesStep,
     createNewProgram, deleteStep, editDataStep,
-    renameProgram, saveChangeStep, setDataTestPos1, setDataTestPos2, setTypeTest
+    renameProgram, saveChangeStep, setDataTest, setTypeTest, startTest
 } from '../../../store/actionCreators/testAction'
 import {loadProtocols} from '../../../store/actionCreators/editProtocolsAction'
 import {loadMethodologys} from '../../../store/actionCreators/editMethodologysAction'
@@ -40,8 +40,7 @@ const Home = props => {
                         setTypeTestHandler={props.setTypeTestHandler}
                         methodologys={props.methodologys}
                         protocols={props.protocols}
-                        setDataTestPos1Handler={props.setDataTestPos1Handler}
-                        setDataTestPos2Handler={props.setDataTestPos2Handler}
+                        setDataTestHandler={props.setDataTestHandler}
                     />
                 </div>
                 <div style={{marginTop: '2vmin'}}>
@@ -101,8 +100,7 @@ function mapDispatchToProps(dispatch){
         setTypeTestHandler: typeTest => dispatch(setTypeTest(typeTest)),
         loadProtocolsHandler: () => dispatch(loadProtocols()),
         loadMethodologysHandler: () => dispatch(loadMethodologys()),
-        setDataTestPos1Handler: data => dispatch(setDataTestPos1(data)),
-        setDataTestPos2Handler: data => dispatch(setDataTestPos2(data))
+        setDataTestHandler: (typePosition, key, value) => dispatch(setDataTest(typePosition, key, value)),
     }
 }
 

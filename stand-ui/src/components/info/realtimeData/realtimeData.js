@@ -13,7 +13,9 @@ const RealtimeData = props => {
                             width: '90%',
                             backgroundColor: '#356e35',
                             color: '#fff'
-                        }}>
+                        }}
+                        onClick={() => props.startTestHandler()}
+                    >
                         <strong style={{fontSize: '2vmin'}}>СТАРТ</strong>
                     </Button>
                 </div>
