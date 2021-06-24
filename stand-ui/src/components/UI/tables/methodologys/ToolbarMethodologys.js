@@ -8,7 +8,7 @@ import FilterListIcon from '@material-ui/icons/FilterList'
 
 const ToolbarMethodology = props => {
     const [open, setOpen] = useState(false)
-    const {
+    let {
         numSelected,
         name,
         addMethodologyAction,
@@ -21,6 +21,10 @@ const ToolbarMethodology = props => {
 
     const handleClose = () => {
         setOpen(false)
+    }
+
+    const deleteMethodologysHandler = count => {
+        deleteMethodologysAction(count)
     }
 
     return (
@@ -56,7 +60,7 @@ const ToolbarMethodology = props => {
                         {
                             numSelected.length > 0?
                                 <DeleteIcon
-                                    onClick={() => deleteMethodologysAction(numSelected)}
+                                    onClick={() => deleteMethodologysHandler(numSelected)}
                                 />
                                 :
                                 <FilterListIcon/>

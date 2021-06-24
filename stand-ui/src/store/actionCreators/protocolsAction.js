@@ -33,9 +33,25 @@ function stopLoading(protocols){
 }
 
 export function filterData(){
-    return dispatch => {
+    return async (dispatch, getState) => {
+
+        const response = await fetch(`${URL}/programs.json`)
+        const protocolsFetch = await response.json()
+        let protocols = Object.keys(protocolsFetch).map(key => ({
+            ...protocolsFetch[key]
+        }))
+
+        let result = protocols
+
+        console.log(getState().protocolsReducer.programName)
+
+        if (getState().protocolsReducer.programName){
+            result = protocols.filter(item => item.name === getState().protocolsReducer.programName)
+        }
+
         dispatch({
-            type: Protocols.FILTER_DATA
+            type: Protocols.FILTER_DATA,
+            payload: result
         })
     }
 }

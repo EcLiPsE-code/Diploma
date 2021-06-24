@@ -85,6 +85,7 @@ const EditMethodologysTable = props => {
                     name={'Методологии'}
                     addMethodologyAction={props.addMethodology}
                     deleteMethodologysAction={props.deleteMethodologys}
+                    loadMethodologysAction={props.loadMethodologys}
                 />
                 <Table
                     aria-labelledby="tableTitle"
@@ -105,7 +106,7 @@ const EditMethodologysTable = props => {
                             stableSort(props.methodologys, getComparator(order, orderBy))
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row, index) => {
-                                const isItemSelected = isSelected(row.name)
+                                const isItemSelected = isSelected(row.id)
                                 const labelId = `enhanced-table-checkbox-${index}`
 
                                 return (

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Layout from './layout/layout'
 import {Route, Switch} from 'react-router-dom'
 import Home from './containers/pages/test/home'
@@ -10,8 +10,15 @@ import StartPage from './containers/pages/start/start'
 import EditUsers from './containers/pages/editUsers/editUsers'
 import EditProtocols from './containers/pages/editProtocols/EditProtocols'
 import EditMethodology from './containers/pages/editMethodologys/editMethodologys'
+import {connect} from 'react-redux'
+import {loadEmployees} from "./store/actionCreators/usersAction";
 
-function App() {
+function App(props) {
+
+  useEffect(() => {
+      props.loadUsersHandler()
+  }, [])
+
   return (
       <Layout>
           <Switch>
@@ -26,7 +33,13 @@ function App() {
               <Route path='/editMethodologys' component={EditMethodology} />
           </Switch>
       </Layout>
-  );
+  )
 }
 
-export default App;
+function mapDispatchToProps(dispatch){
+    return {
+        loadUsersHandler: () => dispatch(loadEmployees())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(App)

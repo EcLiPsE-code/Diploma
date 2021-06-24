@@ -1,5 +1,9 @@
 export const LOAD_SYSTEM = 'LOAD_SYSTEM'
 
+export const Chart = {
+    CHANGE_DATA: 'TEST/CHANGE_DATA'
+}
+
 export const Test = {
     START_TEST: 'TEST/START_TEST',
     END_TEST: 'TEST/STOP_TEST',
@@ -12,6 +16,10 @@ export const Test = {
     CANCEL_CHANGES: 'TEST/CANCEL',
     SET_TYPE_TEST: 'TEST/SET_TYPE',
     SET_DATA_TEST: 'TEST/SET_DATA',
+}
+
+export const DataTest = {
+    CHANGE_DATA_TEST: 'DATA_TEST/CHANGE_DATA',
 }
 
 export const Protocols = {
@@ -30,7 +38,15 @@ export const Accidents = {
 
 export const Employees = {
     START_LOADING: 'EMPLOYEES/START_LOADING',
-    STOP_LOADING: 'EMPLOYEES/STOP_LOADING'
+    STOP_LOADING: 'EMPLOYEES/STOP_LOADING',
+    ADD_EMPLOYEE: 'EMPLOYEES/ADD_EMPLOYEE',
+    DELETE_EMPLOYEES: 'EMPLOYEES/DELETE_EMPLOYEES',
+    CHANGE_ROLE: 'EMPLOYEES/CHANGE_ROLE',
+    SIGN_IN: 'EMPLOYEES/SIGN_IN',
+    SIGN_UP: 'EMPLOYEES/SIGN_UP',
+    LOGOUT: 'EMPLOYEES/LOGOUT',
+    FIRE_EMPLOYEE: 'EMPLOYEES/FIRE_EMPLOYEE',
+    CHANGE_DATA: 'EMPLOYEES/CHANGE_DATA'
 }
 
 export const EditProtocols = {

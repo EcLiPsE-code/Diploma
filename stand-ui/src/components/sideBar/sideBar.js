@@ -17,6 +17,7 @@ import Auxiliary from '../../hoc/auxiliary/auxiliary'
 import {Collapse, Divider, Drawer} from '@material-ui/core'
 import {NavLink} from 'react-router-dom'
 import {ExpandLess, ExpandMore} from '@material-ui/icons'
+import {connect} from 'react-redux'
 
 /**
  * Компонент, который рендерит боковое выезжающее меню
@@ -41,34 +42,28 @@ const Sidebar = props => {
 
     const menu = [
         {
-            id: 0,
-            text: 'Главная',
-            icon: <BuildIcon/>,
-            route: '/'
-        },
-        {
             id: 1,
             text: 'Испытания',
             icon: <HomeIcon/>,
-            route: '/test'
+            route: '/test',
         },
         {
             id: 2,
             text: 'Протоколы',
             icon: <LibraryBooksIcon/>,
-            route: '/protocols'
+            route: '/protocols',
         },
         {
             id: 3,
             text: 'Аварии',
             icon: <WarningIcon/>,
-            route: '/accidents'
+            route: '/accidents',
         },
         {
             id: 4,
             text: 'Графики',
             icon: <TimelineIcon/>,
-            route: '/charts'
+            route: '/charts',
         },
         {
             id: 5,
@@ -99,71 +94,95 @@ const Sidebar = props => {
                     icon: <CardGiftcardIcon/>,
                     route: '/editMethodologys',
                 }
-            ]
+            ],
         }
     ]
 
     const list = () => (
             <List>
+                <NavLink key={1} style={{
+                    width: '100%',
+                    display: 'flex',
+                    position: 'relative',
+                    boxSizing: 'border-box',
+                    textAlign: 'left',
+                    alignItems: 'center',
+                    paddingTop: '8px',
+                    paddingBottom: '8px',
+                    justifyContent: 'flex-start',
+                    textDecoration: 'none',
+                    color: 'black'
+                }} to={'/'}>
+                    <ListItem button key={1} onClick={() => changeToggleDrawer()}>
+                        <ListItemIcon><BuildIcon/></ListItemIcon>
+                        <ListItemText primary={'Главная'} />
+                    </ListItem>
+                </NavLink>
                 {
                     menu.map((menuItem, index) => {
                         return (
-                            menuItem.hasOwnProperty('menu')?
-                                <Auxiliary key={index}>
-                                    <ListItem button key={index} onClick={() => clickHandler()}>
-                                        <ListItemIcon>{menuItem.icon}</ListItemIcon>
-                                        <ListItemText primary={menuItem.text} />
-                                        {open? <ExpandLess /> : <ExpandMore />}
-                                    </ListItem>
-                                    <Collapse in={open} timeout='auto' unmountOnExit>
-                                        <List component='div' disablePadding>
-                                            {
-                                                menuItem.menu.map((item, item_index) => {
-                                                    return (
-                                                        <NavLink key={item_index} style={{
-                                                            width: '100%',
-                                                            display: 'flex',
-                                                            position: 'relative',
-                                                            boxSizing: 'border-box',
-                                                            textAlign: 'left',
-                                                            alignItems: 'center',
-                                                            paddingTop: '8px',
-                                                            paddingBottom: '8px',
-                                                            justifyContent: 'flex-start',
-                                                            textDecoration: 'none',
-                                                            color: 'black'
-                                                        }}
-                                                                 to={item.route}>
-                                                            <ListItem button key={item_index} onClick={() => changeToggleDrawer()}>
-                                                                <ListItemIcon>{item.icon}</ListItemIcon>
-                                                                <ListItemText primary={item.text} />
-                                                            </ListItem>
-                                                        </NavLink>
-                                                    )
-                                                })
-                                            }
-                                        </List>
-                                    </Collapse>
-                                </Auxiliary>
+                            props.token?
+                                menuItem.hasOwnProperty('menu')?
+                                    props.employee.position === 'Администратор'?
+                                        <Auxiliary key={index}>
+                                            <ListItem button key={index} onClick={() => clickHandler()}>
+                                                <ListItemIcon>{menuItem.icon}</ListItemIcon>
+                                                <ListItemText primary={menuItem.text} />
+                                                {open? <ExpandLess /> : <ExpandMore />}
+                                            </ListItem>
+                                            <Collapse in={open} timeout='auto' unmountOnExit>
+                                                <List component='div' disablePadding>
+                                                    {
+                                                        menuItem.menu.map((item, item_index) => {
+                                                            return (
+                                                                <NavLink key={item_index} style={{
+                                                                    width: '100%',
+                                                                    display: 'flex',
+                                                                    position: 'relative',
+                                                                    boxSizing: 'border-box',
+                                                                    textAlign: 'left',
+                                                                    alignItems: 'center',
+                                                                    paddingTop: '8px',
+                                                                    paddingBottom: '8px',
+                                                                    justifyContent: 'flex-start',
+                                                                    textDecoration: 'none',
+                                                                    color: 'black'
+                                                                }}
+                                                                         to={item.route}>
+                                                                    <ListItem button key={item_index} onClick={() => changeToggleDrawer()}>
+                                                                        <ListItemIcon>{item.icon}</ListItemIcon>
+                                                                        <ListItemText primary={item.text} />
+                                                                    </ListItem>
+                                                                </NavLink>
+                                                            )
+                                                        })
+                                                    }
+                                                </List>
+                                            </Collapse>
+                                        </Auxiliary>
+                                        :
+                                        null
+                                    :
+                                    <NavLink key={index} style={{
+                                        width: '100%',
+                                        display: 'flex',
+                                        position: 'relative',
+                                        boxSizing: 'border-box',
+                                        textAlign: 'left',
+                                        alignItems: 'center',
+                                        paddingTop: '8px',
+                                        paddingBottom: '8px',
+                                        justifyContent: 'flex-start',
+                                        textDecoration: 'none',
+                                        color: 'black'
+                                    }} to={menuItem.route}>
+                                        <ListItem button key={index} onClick={() => changeToggleDrawer()}>
+                                            <ListItemIcon>{menuItem.icon}</ListItemIcon>
+                                            <ListItemText primary={menuItem.text} />
+                                        </ListItem>
+                                    </NavLink>
                                 :
-                                <NavLink key={index} style={{
-                                    width: '100%',
-                                    display: 'flex',
-                                    position: 'relative',
-                                    boxSizing: 'border-box',
-                                    textAlign: 'left',
-                                    alignItems: 'center',
-                                    paddingTop: '8px',
-                                    paddingBottom: '8px',
-                                    justifyContent: 'flex-start',
-                                    textDecoration: 'none',
-                                    color: 'black'
-                                }} to={menuItem.route}>
-                                    <ListItem button key={index} onClick={() => changeToggleDrawer()}>
-                                        <ListItemIcon>{menuItem.icon}</ListItemIcon>
-                                        <ListItemText primary={menuItem.text} />
-                                    </ListItem>
-                                </NavLink>
+                                null
                         )
                     })
                 }
@@ -182,4 +201,11 @@ const Sidebar = props => {
     );
 };
 
-export default Sidebar
+function mapStateToProps(state){
+    return {
+        token: state.usersReducer.token,
+        employee: state.usersReducer.user
+    }
+}
+
+export default connect(mapStateToProps, null)(Sidebar)

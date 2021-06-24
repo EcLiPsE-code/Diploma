@@ -21,6 +21,7 @@ export function loadProtocols(){
 
 export function deleteProtocols(ids){
     return async (dispatch) => {
+        console.log(ids)
         ids.forEach(id => {
             fetch(`${URL}/protocols/${id}.json`, {
                 method: 'DELETE',
@@ -42,7 +43,7 @@ export function deleteProtocols(ids){
 
 export function addProtocol(name){
     return async (dispatch, getState) => {
-        let methodologys = getState().editMethodologysReducer.methodologys
+        let protocols = getState().editProtocolsReducer.protocols
         const response = await fetch(`${URL}/protocols.json`, {
             method: 'POST',
             headers: {
@@ -50,17 +51,22 @@ export function addProtocol(name){
             },
             body: JSON.stringify({
                 name,
-                number: methodologys.length + 2
+                number: protocols.length + 1
             })
         })
+
         if (!response.ok){
             throw new Error('Error add new protocols')
         }
+
+        const resName = await response.json()
+
         dispatch({
             type: EditProtocols.ADD,
             payload: {
+                id: resName.name,
                 name,
-                number: methodologys.length + 2
+                number: protocols.length + 1
             }
         })
     }

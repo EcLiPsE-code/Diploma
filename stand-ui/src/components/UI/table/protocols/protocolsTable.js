@@ -222,7 +222,7 @@ const ProtocolsTable = props => {
                             stableSort(props.protocols, getComparator(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => {
-                                    const isItemSelected = isSelected(row.name);
+                                    const isItemSelected = isSelected(row.id);
                                     const labelId = `enhanced-table-checkbox-${index}`;
 
                                     return (
@@ -231,8 +231,9 @@ const ProtocolsTable = props => {
                                             role="checkbox"
                                             aria-checked={isItemSelected}
                                             tabIndex={-1}
-                                            key={row.name}
+                                            key={row.id}
                                             selected={isItemSelected}
+                                            onClick={() => props.clickRow()}
                                         >
                                             <TableCell padding="checkbox">
                                                 <Checkbox

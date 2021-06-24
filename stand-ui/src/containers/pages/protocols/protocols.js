@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import 'date-fns'
 import classes from './protocols.module.css'
 import Input from "../../../components/UI/input/input"
-import {Button, CircularProgress, Menu, MenuItem} from '@material-ui/core'
+import {Button, CircularProgress, Menu, MenuItem, TextField} from '@material-ui/core'
 import ProtocolsTable from '../../../components/UI/table/protocols/protocolsTable'
 import UserCalendar from '../../../components/UI/calendar/calender'
 import SettingsIcon from '@material-ui/icons/Settings'
@@ -15,6 +15,9 @@ import {
     filterData
 } from '../../../store/actionCreators/protocolsAction'
 import {connect} from 'react-redux'
+import ReportTest from "../../../components/report/report";
+import {generateDataTest} from "../../../helerps/generateReport";
+import ReportTableTest from "../../../components/report/report";
 
 /**
  * Компонент, который рендерит страницу "Протоколы"
@@ -24,9 +27,16 @@ import {connect} from 'react-redux'
  */
 const Protocols = props => {
 
+    const [data, setData] = useState([])
+
     useEffect(() => {
         props.fetchLoadProtocols()
     }, [])
+
+    const generateDataHandler = () => {
+        const arr = generateDataTest()
+        setData(arr)
+    }
 
     return (
         <Auxiliary>
@@ -57,10 +67,11 @@ const Protocols = props => {
                                 </Button>
                             </span>
                             <span>
-                                <Input
+                                <TextField
                                     label={'Программа'}
                                     defaultValue={'Программа'}
                                     variant={'outlined'}
+                                    size={'small'}
                                     onChange={event => props.setProgramName(event.currentTarget.value)}
                                 />
                             </span>
@@ -100,6 +111,8 @@ const Protocols = props => {
                                     <ProtocolsTable
                                         isLoading={props.isLoading}
                                         protocols={props.protocols}
+                                        clickRow={generateDataHandler}
+                                        rows={data}
                                     />
                             }
                         </div>
@@ -110,7 +123,9 @@ const Protocols = props => {
                         <strong>Данные по протоколу</strong>
                     </div>
                     <div>
-
+                        <ReportTableTest
+                            rows={data}
+                        />
                     </div>
                 </div>
             </div>

@@ -4,8 +4,8 @@ import CurrentAccidents from '../../components/info/currentAccidents/currentAcci
 import RealtimeData from '../../components/info/realtimeData/realtimeData'
 import classes from './infoPanel.module.css'
 import {connect} from 'react-redux'
-import {loadSystem} from '../../store/actionCreators/panelInfoAction'
-import {startTest} from "../../store/actionCreators/testAction";
+import {changeData, loadSystem} from '../../store/actionCreators/panelInfoAction'
+import {startTest} from '../../store/actionCreators/testAction'
 
 /**
  * Компонент, необходимый для формирования панели,
@@ -34,6 +34,7 @@ const InfoPanel = props => {
             />
             <RealtimeData
                 startTestHandler={props.startTestHandler}
+                realTimeData={props.realTimeData}
             />
         </div>
     )
@@ -41,12 +42,35 @@ const InfoPanel = props => {
 
 function mapStateToProps(state){
     return {
-        modeSystem: state.panelInfoReducer.modeSystem,
-        serverSystem: state.panelInfoReducer.serverSystem,
-        stateSystem: state.panelInfoReducer.stateSystem,
-        currentAccidentInfo: state.panelInfoReducer.currentAccidentInfo,
-        currentAccidentWarning: state.panelInfoReducer.currentAccidentWarning,
-        currentAccidentError: state.panelInfoReducer.currentAccidentError,
+        modeSystem: state.testReducer.modeSystem,
+        serverSystem: state.testReducer.serverSystem,
+        stateSystem: state.testReducer.stateSystem,
+        currentAccidentInfo: state.testReducer.currentAccidentInfo,
+        currentAccidentWarning: state.testReducer.currentAccidentWarning,
+        currentAccidentError: state.testReducer.currentAccidentError,
+        realTimeData: {
+            duration: state.testReducer.realTimeData.duration,
+            speed: state.testReducer.realTimeData.speed,
+            mileage: state.testReducer.realTimeData.mileage,
+            step: state.testReducer.realTimeData.step,
+            durationStep: state.testReducer.realTimeData.durationStep,
+            mileageStep: state.testReducer.realTimeData.mileageStep,
+            torque: state.testReducer.realTimeData.torque,
+            load1: state.testReducer.realTimeData.load1,
+            load2: state.testReducer.realTimeData.load2,
+            pressure1: state.testReducer.realTimeData.pressure1,
+            pressure2: state.testReducer.realTimeData.pressure2,
+            dynamicR1: state.testReducer.realTimeData.dynamicR1,
+            dynamicR2: state.testReducer.realTimeData.dynamicR2,
+            temperatureChamber1: state.testReducer.realTimeData.temperatureChamber1, //температура камеры
+            temperatureChamber2: state.testReducer.realTimeData.temperatureChamber2,
+            temperatureTread1: state.testReducer.realTimeData.temperatureTread1, //температура протектора
+            temperatureTread2: state.testReducer.realTimeData.temperatureTread2,
+            temperatureBoard1: state.testReducer.realTimeData.temperatureBoard1, //температура борта
+            temperatureBoard2: state.testReducer.realTimeData.temperatureBoard2,
+            TMPS1: state.testReducer.realTimeData.TMPS1,
+            TMPS2: state.testReducer.realTimeData.TMPS2
+        }
     }
 }
 

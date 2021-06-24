@@ -22,7 +22,8 @@ export function loadMethodologys(){
 }
 
 export function deleteMethodology(ids){
-    return async (dispatch, getState) => {
+    return async (dispatch) => {
+        console.log(ids)
         ids.forEach(id => {
             fetch(`${URL}/methodologys/${id}.json`, {
                 method: 'DELETE',
@@ -31,7 +32,7 @@ export function deleteMethodology(ids){
                     throw new Error(`Error delete methodology`)
                 }
                 else{
-                    alert('Successfully')
+                    console.log('Successfully')
                 }
             })
         })
@@ -45,6 +46,7 @@ export function deleteMethodology(ids){
 export function addMethodology(name){
     return async (dispatch, getState) => {
         let methodologys = getState().editMethodologysReducer.methodologys
+        const numberLastElement = methodologys[methodologys.length - 1].number
         const response = await fetch(`${URL}/methodologys.json`, {
             method: 'POST',
             headers: {
@@ -52,17 +54,21 @@ export function addMethodology(name){
             },
             body: JSON.stringify({
                 name,
-                number: methodologys.length + 1
+                number: numberLastElement + 1
             })
         })
         if (!response.ok){
             throw new Error('Error add new methodology')
         }
+
+        const res = await response.json()
+
         dispatch({
             type: EditMethodologys.ADD,
             payload: {
+                id: res.name,
                 name,
-                number: methodologys.length + 1
+                number: numberLastElement + 1
             }
         })
     }
@@ -134,6 +140,7 @@ export function editMethodology(id){
         let methodologys = getState().editMethodologysReducer.methodologys
         const res = methodologys.map(item => {
             if (item.id === id){
+                console.log(id)
                 return {
                     ...item,
                     edit: true

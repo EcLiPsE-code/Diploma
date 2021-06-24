@@ -46,6 +46,7 @@ const EditMethodology = props => {
                         cancelChanges={props.cancelChangesHandler}
                         addMethodology={props.addMethodologyHandler}
                         deleteMethodologys={props.deleteMethodologysHandler}
+                        loadMethodologys={props.loadingMethodologys}
                     />
             }
         </div>

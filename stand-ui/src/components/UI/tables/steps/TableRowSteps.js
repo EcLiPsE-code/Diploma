@@ -26,6 +26,12 @@ const UserTableRowSteps = props => {
         cancelChangesStep
     } = props
 
+    const setTimeStep = time => {
+        console.log(time)
+        const [hours, minutes, seconds] = time.split(':')
+        setDuration(`${hours}:${minutes}:${seconds}`)
+    }
+
     return (
         <TableRow
             hover
@@ -78,8 +84,7 @@ const UserTableRowSteps = props => {
                             variant='outlined'
                             margin="dense"
                             id="name"
-                            type="time"
-                            onChange={event => setDuration(event.currentTarget.value)}
+                            onChange={event => setTimeStep(event.currentTarget.value)}
                             defaultValue={rowspan.duration}
                         />
                         :

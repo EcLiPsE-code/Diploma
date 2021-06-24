@@ -34,28 +34,21 @@ const UserSelect = props => {
                     disabled={props.disabledType}
                 >
                     {
-                        props.title === 'Методология'?
-                            props.methodologysArr.map(item => {
-                                return (
-                                    <MenuItem
-                                        value={item.name}
-                                        onClick={() => props.onChange(props.keyPosition, props.keyInput, item.name)}
-                                    >
-                                        {item.name}
-                                    </MenuItem>
-                                )
-                            })
-                            :
-                            props.protocolsArr.map(item => {
-                                return (
-                                    <MenuItem
-                                        value={item.name}
-                                        onClick={() => props.onChange(props.keyPosition, props.keyInput, item.name)}
-                                    >
-                                        {item.name}
-                                    </MenuItem>
-                                )
-                            })
+                        props.arr.map(item => {
+                            return (
+                                <MenuItem
+                                    value={item.name}
+                                    onClick={
+                                        props.onChange?
+                                            () => props.onChange(props.keyPosition, props.keyInput, item.name)
+                                            :
+                                            () => props.changed(item.name)
+                                    }
+                                >
+                                    {item.name}
+                                </MenuItem>
+                            )
+                        })
                     }
                 </Select>
             </FormControl>

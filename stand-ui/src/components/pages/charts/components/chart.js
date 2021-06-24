@@ -1,18 +1,16 @@
 import React, {useEffect, useState} from 'react'
 import Chart from "react-apexcharts"
 import ApexChart from 'apexcharts'
-import randomInteger from "../../../../helerps/randomizer/randomizer"
-import formatterDate from "../../../../helerps/dateFormatter/formatter"
-import moment from 'moment'
+import formatterDateChart from "../../../../helerps/dateFormatter/formatter"
+import {connect} from 'react-redux'
 
-const UserChart = ({id, text, textY}) => {
+const UserChart = props => {
 
     const [arrX, setArrX] = useState([])
-
     const [state, setState] = useState({
         options: {
             chart: {
-                id: id,
+                id: props.id,
                 type: 'line',
                 toolbar: {
                     show: false
@@ -43,12 +41,12 @@ const UserChart = ({id, text, textY}) => {
                 curve: 'smooth'
             },
             title: {
-                text: text
+                text: props.text
             },
             yaxis: [
                 {
                     title: {
-                        text: textY
+                        text: props.textY
                     }
                 }
             ],
@@ -63,29 +61,34 @@ const UserChart = ({id, text, textY}) => {
         },
         series: [
             {
-                name: text,
+                name: props.text,
                 data: arrX
             }
         ]
     })
 
+    const parameter = {
+        'speed' : props.speed,
+        'load1' : props.load1,
+        'load2' : props.load2,
+        'pressure2' : props.pressure2,
+        'pressure1' : props.pressure1,
+        'temperatureChamber1' : props.temperatureChamber1,
+        'temperatureChamber2' : props.temperatureChamber2
+    }
+
     useEffect( () => {
-        setInterval(() => {
-            if (arrX.length === 8){
-                arrX.splice(0, 1)
-            }
-            let newArrX = arrX.push({
-                x: formatterDate(new Date(Date.now())),
-                y: randomInteger(1, 100)
-            })
-            setArrX(newArrX)
-
-            ApexChart.exec(id, 'updateSeries', [{
-                data: arrX
-            }])
-
-        }, 5000)
-    }, [])
+        if (arrX.length === 8){
+            arrX.splice(0, 1)
+        }
+        arrX.push({
+            x: formatterDateChart(new Date(Date.now())),
+            y: parseInt(parameter[props.keyData])
+        })
+        ApexChart.exec(props.id, 'updateSeries', [{
+            data: arrX
+        }])
+    }, [parameter[props.keyData]])
 
     return (
         <Chart
@@ -97,4 +100,16 @@ const UserChart = ({id, text, textY}) => {
     )
 }
 
-export default UserChart
+function mapStateToProps(state){
+    return {
+        speed: state.testReducer.realTimeData.speed,
+        load1: state.testReducer.realTimeData.load1,
+        load2: state.testReducer.realTimeData.load2,
+        pressure1: state.testReducer.realTimeData.pressure1,
+        pressure2: state.testReducer.realTimeData.pressure2,
+        temperatureChamber1: state.testReducer.realTimeData.temperatureChamber1,
+        temperatureChamber2: state.testReducer.realTimeData.temperatureChamber2
+    }
+}
+
+export default connect(mapStateToProps, null)(UserChart)

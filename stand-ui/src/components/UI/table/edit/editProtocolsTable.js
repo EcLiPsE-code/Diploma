@@ -17,7 +17,7 @@ const headCells = [
 
 const EditProtocolsTable = props => {
     const [order, setOrder] = useState('asc')
-    const [orderBy, setOrderBy] = useState('surname')
+    const [orderBy, setOrderBy] = useState('name')
     const [selected, setSelected] = useState([])
     const [page, setPage] = useState(0)
     const [rowsPerPage, setRowsPerPage] = useState(5)
@@ -38,33 +38,33 @@ const EditProtocolsTable = props => {
     }
 
     const handleClick = (event, name) => {
-        const selectedIndex = selected.indexOf(name);
-        let newSelected = [];
+        const selectedIndex = selected.indexOf(name)
+        let newSelected = []
 
         if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, name);
+            newSelected = newSelected.concat(selected, name)
         } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
+            newSelected = newSelected.concat(selected.slice(1))
         } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
+            newSelected = newSelected.concat(selected.slice(0, -1))
         } else if (selectedIndex > 0) {
             newSelected = newSelected.concat(
                 selected.slice(0, selectedIndex),
                 selected.slice(selectedIndex + 1),
-            );
+            )
         }
 
         setSelected(newSelected)
     }
 
     const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
+        setPage(newPage)
+    }
 
     const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
+        setRowsPerPage(parseInt(event.target.value, 10))
+        setPage(0)
+    }
 
     const isSelected = name => selected.indexOf(name) !== -1;
 
@@ -104,8 +104,8 @@ const EditProtocolsTable = props => {
                         {stableSort(props.protocols, getComparator(order, orderBy))
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row, index) => {
-                                const isItemSelected = isSelected(row.name);
-                                const labelId = `enhanced-table-checkbox-${index}`;
+                                const isItemSelected = isSelected(row.id)
+                                const labelId = `enhanced-table-checkbox-${index}`
 
                                 return (
                                     <UserTableRowProtocol

@@ -1,10 +1,40 @@
 import {URL} from '../../constants/index'
 import {Test} from '../actionsType/actionsType'
+import randomInteger from '../../helerps/randomizer/randomizer'
+import {parseTime} from '../../helerps/dateFormatter/formatter'
 
 export function startTest(){
     return (dispatch, getState) => {
-        const state = getState().testReducer
-        console.log(state)
+        const steps = getState().testReducer.steps
+        const typeTest = getState().testReducer.typeTest
+
+        const newState = {
+            duration: parseTime(steps[0].duration),
+            speed: randomInteger(0, 120),
+            mileage: randomInteger(0, 200),
+            step: randomInteger(0, 15),
+            durationStep: randomInteger(0, 100),
+            mileageStep: randomInteger(20, 50),
+            torque: randomInteger(20, 100),
+            load1: randomInteger(0, 1000),
+            load2: typeTest === 'КСК'? randomInteger(0, 1000) : null,
+            pressure1: randomInteger(0, 500),
+            pressure2: typeTest === 'КСК'? randomInteger(0, 500) : null,
+            dynamicR1: randomInteger(1, 255),
+            dynamicR2: typeTest === 'КСК'? randomInteger(1, 255) : null,
+            temperatureChamber1: randomInteger(0, 100),
+            temperatureChamber2: typeTest === 'КСК'? randomInteger(0, 100) : null,
+            temperatureTread1: randomInteger(0, 125),
+            temperatureTread2: typeTest === 'КСК'? randomInteger(0, 125) : null,
+            temperatureBoard1: randomInteger(0, 50),
+            temperatureBoard2: typeTest === 'КСК'? randomInteger(0, 20) : null,
+            TMPS1: randomInteger(0, 10),
+            TMPS2: typeTest === 'КСК'? randomInteger(0, 10) : null
+        }
+        dispatch({
+            type: Test.START_TEST,
+            payload: newState
+        })
     }
 }
 

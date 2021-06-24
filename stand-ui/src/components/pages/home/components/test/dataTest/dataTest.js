@@ -21,8 +21,7 @@ const DataTest = props => {
             </div>
             <div>
                 <UserSelect
-                    protocolsArr={props.protocols}
-                    methodologysArr={props.methodologys}
+                    arr={props.protocols}
                     title={'Протокол'}
                     style={{
                         width: '15vw',
@@ -75,8 +74,7 @@ const DataTest = props => {
             </div>
             <div>
                 <UserSelect
-                    protocolsArr={props.protocols}
-                    methodologysArr={props.methodologys}
+                    arr={props.methodologys}
                     title={'Методология'}
                     style={{
                         width: '15vw',

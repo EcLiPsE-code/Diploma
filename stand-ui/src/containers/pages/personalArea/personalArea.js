@@ -4,6 +4,7 @@ import {Avatar, Button} from "@material-ui/core"
 import EditData from "../../../components/pages/personalArea/components/editData"
 import {connect} from 'react-redux'
 import AccountData from "../../../components/UI/dialog/changeAccountData";
+import {changeDataUser} from "../../../store/actionCreators/usersAction";
 
 /**
  * Компонент, который рендерит личную страницу каждого пользователя
@@ -37,35 +38,43 @@ const PersonalArea = props => {
                             fontSize: '3vmin',
                             backgroundColor: 'purple'
                         }}>
-                            {`${props.name.charAt(0)}${props.surname.charAt(0)}`}
+                            {`${props.user.name.charAt(0)}${props.user.surname.charAt(0)}`}
                         </Avatar>
                     </span>
                     <span>
                         <h2>
-                            {`${props.name} ${props.surname} ${props.lastName}`}
+                            {`${props.user.name} ${props.user.surname} ${props.user.lastName}`}
                         </h2>
                     </span>
                 </div>
                 <div className={classes.EditUserInfo}>
                     <EditData
-                        state={props.name}
+                        state={props.user.name}
                         labelEdit={'Имя'}
                         label={'Имя'}
+                        keyInput={'name'}
+                        onChangeHandler={props.changeData}
                     />
                     <EditData
-                        state={props.surname}
+                        state={props.user.surname}
                         labelEdit={'Фамилия'}
                         label={'Фамилия'}
+                        keyInput={'surname'}
+                        onChangeHandler={props.changeData}
                     />
                     <EditData
-                        state={props.lastName}
+                        state={props.user.lastName}
                         labelEdit={'Отчество'}
                         label={'Отчество'}
+                        keyInput={'lastName'}
+                        onChangeHandler={props.changeData}
                     />
                     <EditData
-                        state={props.phone}
+                        state={props.user.phone}
                         labelEdit={'Телефон'}
                         label={'Мобильный телефон'}
+                        keyInput={'phone'}
+                        onChangeHandler={props.changeData}
                     />
                 </div>
                 <div
@@ -93,18 +102,13 @@ const PersonalArea = props => {
 
 function mapStateToProps(state){
     return {
-        name: state.personalAreaReducer.name,
-        surname: state.personalAreaReducer.surname,
-        lastName: state.personalAreaReducer.lastName,
-        phone: state.personalAreaReducer.phone,
-        email: state.personalAreaReducer.email,
-        password: state.personalAreaReducer.password
+        user: state.usersReducer.user
     }
 }
 
 function mapDispatchToProps(dispatch){
     return {
-
+        changeData: (key, value) => dispatch(changeDataUser(key, value))
     }
 }
 

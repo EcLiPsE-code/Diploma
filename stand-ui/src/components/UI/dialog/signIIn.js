@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog'
@@ -14,6 +14,15 @@ import DialogTitle from '@material-ui/core/DialogTitle'
  * @constructor
  */
 const SignIn = props => {
+
+    const [email, setEmail] = useState(null)
+    const [password, setPassword] = useState(null)
+
+    const signIn = () => {
+        props.signInHandler(email, password)
+        props.handleClickClose()
+    }
+
     return (
         <div>
             <Dialog
@@ -30,6 +39,7 @@ const SignIn = props => {
                         label="Email"
                         type="email"
                         fullWidth
+                        onChange={event => setEmail(event.currentTarget.value)}
                     />
                 </DialogContent>
                 <DialogContent>
@@ -40,13 +50,14 @@ const SignIn = props => {
                         label="Password"
                         type="password"
                         fullWidth
+                        onChange={event => setPassword(event.currentTarget.value)}
                     />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={() => props.handleClickClose()} color="primary">
                         Отмена
                     </Button>
-                    <Button onClick={() => props.handleClickClose()} color="primary">
+                    <Button onClick={() => signIn()} color="primary">
                         Войти
                     </Button>
                 </DialogActions>

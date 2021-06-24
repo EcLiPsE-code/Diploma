@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import classes from '../css/editUsername.module.css'
 import Input from "../../../UI/input/input";
-import {Button} from "@material-ui/core";
+import {Button, TextField} from "@material-ui/core";
 
 /**
  * Компонент UI, который используется для ввода и редактирования личной информации
@@ -13,7 +13,13 @@ import {Button} from "@material-ui/core";
 const EditData = props => {
 
     const [state, setState] = useState(false)
-    
+    const [value, setValue] = useState(props.state)
+
+    const saveChanges = () => {
+        props.onChangeHandler(props.keyInput, value)
+        setState(!state)
+    }
+
     return (
         <div className={classes.EditUserName}>
             <div>
@@ -27,10 +33,11 @@ const EditData = props => {
                 {
                     state?
                         <span>
-                            <Input
+                            <TextField
                                 label={props.label}
                                 defaultValue={props.state}
                                 variant={'outlined'}
+                                onChange={event => setValue(event.currentTarget.value)}
                             />
                         </span> :
                         <span style={{
@@ -48,6 +55,7 @@ const EditData = props => {
                             <span style={{marginLeft: '2vmin'}}>
                                 <Button
                                     variant='outlined'
+                                    onClick={() => saveChanges()}
                                 >
                                     Применить
                                 </Button>

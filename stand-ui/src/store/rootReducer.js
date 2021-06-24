@@ -7,6 +7,8 @@ import accidentsReducer from './reducers/accidentsReducer'
 import usersReducer from './reducers/usersReducer'
 import editProtocolsReducer from './reducers/editProtocolsReducer'
 import editMethodologysReducer from './reducers/editMethodologysReducer'
+import chartReducer from './reducers/chartReducer'
+import authReducer from './reducers/authReducer'
 
 export default combineReducers({
     panelInfoReducer,
@@ -16,5 +18,7 @@ export default combineReducers({
     accidentsReducer,
     usersReducer,
     editProtocolsReducer,
-    editMethodologysReducer
+    editMethodologysReducer,
+    chartReducer,
+    authReducer
 })

@@ -85,7 +85,7 @@ const AccidentsTable = props => {
                 <AccidentsTableToolbar numSelected={selected.length} />
                 <Table
                     aria-labelledby="tableTitle"
-                    size={'small'}
+                    size={'medium'}
                     aria-label="enhanced table"
                     stickyHeader
                 >

@@ -3,7 +3,9 @@ import classes from './editUsers.module.css'
 import {CircularProgress} from '@material-ui/core'
 import EmployeesTable from '../../../components/UI/table/edit/editUserTable'
 import {
-    loadEmployees
+    deleteUsers,
+    loadEmployees,
+    addUser, fireEmployee, changeRole
 } from '../../../store/actionCreators/usersAction'
 import {connect} from 'react-redux'
 
@@ -35,6 +37,10 @@ const EditUsers = props => {
                     :
                     <EmployeesTable
                         employees={props.users}
+                        deleteUsers={props.deleteUsers}
+                        addUser={props.addUser}
+                        fireEmployee={props.fireEmployee}
+                        changeRoleHandler={props.changeRoleHandler}
                     />
             }
         </div>
@@ -50,7 +56,11 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return {
-        loadingEmployees: () => dispatch(loadEmployees())
+        loadingEmployees: () => dispatch(loadEmployees()),
+        deleteUsers: ids => dispatch(deleteUsers(ids)),
+        addUser: employee => dispatch(addUser(employee)),
+        fireEmployee: employee => dispatch(fireEmployee(employee)),
+        changeRoleHandler: employee => dispatch(changeRole(employee))
     }
 }
 

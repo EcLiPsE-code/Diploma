@@ -19,12 +19,42 @@ const initialState = {
         methodology: null
     },
     programName: null,
-    steps: []
+    steps: [],
+    modeSystem: true, // Ручной(false) или Автомат(true)
+    serverSystem: true, //Включен или Выключен.
+    stateSystem: false, //Включено или выключено
+    currentAccidentInfo: '一',
+    currentAccidentWarning: '一',
+    currentAccidentError: '一',
+    realTimeData: {
+        duration: '一',
+        speed: '一',
+        mileage: '一',
+        step: '一',
+        durationStep: '一',
+        mileageStep: '一',
+        torque: '一',
+        load1: '一',
+        load2: '一',
+        pressure1: '一',
+        pressure2: '一',
+        dynamicR1: '一',
+        dynamicR2: '一',
+        temperatureChamber1: '一', //температура камеры
+        temperatureChamber2: '一',
+        temperatureTread1: '一', //температура протектора
+        temperatureTread2: '一',
+        temperatureBoard1: '一', //температура борта
+        temperatureBoard2: '一',
+        TMPS1: '一',
+        TMPS2: '一'
+    }
 }
 
 const handlers = {
     [Test.START_TEST] : (state, {payload}) => ({
-        ...state
+        ...state,
+        realTimeData: payload
     }),
     [Test.END_TEST] : (state, {payload}) => ({
         ...state

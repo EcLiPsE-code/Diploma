@@ -30,6 +30,10 @@ const handlers = {
         ...state,
         programName: payload
     }),
+    [Protocols.FILTER_DATA] : (state, {payload}) => ({
+        ...state,
+        protocols: payload
+    }),
     DEFAULT: state => state
 }
 

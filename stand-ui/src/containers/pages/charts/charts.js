@@ -16,6 +16,7 @@ const Charts = props => {
                     id={'chart-1'}
                     text={'Скорость'}
                     textY={'Скорость'}
+                    keyData={'speed'}
                 />
             </div>
             <div className={classes.Chart}>
@@ -23,6 +24,7 @@ const Charts = props => {
                     id={'chart-2'}
                     text={'Нагрузка П1'}
                     textY={'Нагрузка в П1'}
+                    keyData={'load1'}
                 />
             </div>
             <div className={classes.Chart}>
@@ -30,6 +32,7 @@ const Charts = props => {
                     id={'chart-3'}
                     text={'Нагрузка П2'}
                     textY={'Нагрузка в П2'}
+                    keyData={'load2'}
                 />
             </div>
             <div className={classes.Chart}>
@@ -37,6 +40,7 @@ const Charts = props => {
                     id={'chart-4'}
                     text={'Давление П1'}
                     textY={'Давление в П1'}
+                    keyData={'pressure1'}
                 />
             </div>
             <div className={classes.Chart}>
@@ -44,6 +48,7 @@ const Charts = props => {
                     id={'chart-5'}
                     text={'Давление П2'}
                     textY={'Давление в П2'}
+                    keyData={'pressure2'}
                 />
             </div>
             <div className={classes.Chart}>
@@ -51,6 +56,7 @@ const Charts = props => {
                     id={'chart-6'}
                     text={'t камеры П1'}
                     textY={'t в камере П1'}
+                    keyData={'temperatureChamber1'}
                 />
             </div>
             <div className={classes.Chart}>
@@ -58,6 +64,7 @@ const Charts = props => {
                     id={'chart-7'}
                     text={'t камеры П2'}
                     textY={'t в камере П2'}
+                    keyData={'temperatureChamber2'}
                 />
             </div>
         </div>
